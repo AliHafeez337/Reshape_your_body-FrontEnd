@@ -7,6 +7,7 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
+import getters from './getters'
 import axios from 'axios'
 const actions = {
 
@@ -60,24 +61,27 @@ const actions = {
     dispatch('updateUserInfo', {userRole: payload.userRole})
   },
   
+  // Ali's work
   login: ({commit, dispatch}, user) => {
     console.log(user)
     return new Promise((resolve, reject) => { // The Promise used for router redirect in login
       commit('AUTH_REQUEST')
-      axios.post('http://localhost:3000/user/login', {
+      axios.post('/user/login', {
+      // axios.post('/user/login', {
         email: user.email,
         password: user.password
       })
         .then(resp => {
-          console.log(resp)
           const token = resp.data.token
           localStorage.setItem('user-token', token) // store the token in localstorage
           localStorage.setItem('user-id', resp.data._id)
           localStorage.setItem('user-photo', resp.data.photo)
           localStorage.setItem('user-email', resp.data.email)
-          commit('AUTH_SUCCESS', token, resp.data._id, resp.data.photo, resp.data.email)
+          localStorage.setItem('user-firstname', resp.data.firstname)
+          localStorage.setItem('user-lastname', resp.data.lastname)
+          commit('AUTH_SUCCESS', token, resp.data._id, resp.data.photo, resp.data.email, resp.data.firstname, resp.data.lastname)
           // you have your token, now log in your user :)
-          // dispatch('USER_REQUEST')
+          dispatch('USER_REQUEST')
           resolve(resp)
         })
         .catch(err => {
@@ -85,6 +89,32 @@ const actions = {
           localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
           reject(err)
         })
+    })
+  },
+
+  logout: ({commit, dispatch, state}) => {
+    getters.getToken().then((token) => {
+      console.log(token)
+      axios.defaults.headers.common['x-auth'] = token
+      
+      return new Promise((resolve, reject) => {
+        axios.post('/user/logout')
+          .then(res => {
+            console.log(res)
+            commit('AUTH_LOGOUT')
+            localStorage.removeItem('user-token') // clear your user's token from localstorage
+            localStorage.removeItem('user-id')
+            localStorage.removeItem('user-photo')
+            localStorage.removeItem('user-email')
+            localStorage.removeItem('user-firstname')
+            localStorage.removeItem('user-lastname')
+            resolve()
+          })
+          .catch(err => {
+            commit('AUTH_ERROR', err)
+            reject(err)
+          })
+      })
     })
   }
 }
