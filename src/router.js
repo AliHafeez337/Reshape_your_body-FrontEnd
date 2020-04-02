@@ -306,7 +306,7 @@ const router = new Router({
             pageTitle: 'FAQ',
             rule: 'editor'
           }
-        },
+        }
 
         // =============================================================================
         // CHARTS & MAPS
