@@ -1,7 +1,5 @@
 // axios
-import Store from './store/store'
 import getters from './store/getters'
-import state from './store/state'
 import axios from 'axios'
 
 // const baseURL = 'http://localhost:3000'
@@ -25,6 +23,9 @@ axios.interceptors.request.use(config => {
 })
 axios.interceptors.response.use(res => {
   console.log('Response Interceptor', res)
+  if (res.config.url === '/user/login') {
+    axios.defaults.headers.common['x-auth'] = res.data.token
+  }
   return res
 })
 

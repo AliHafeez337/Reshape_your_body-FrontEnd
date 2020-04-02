@@ -30,6 +30,7 @@
 
                 <div>
                   <span class="text-danger text-sm" v-show="isEmailValid()">Email must be valid.</span>
+                  <br />
                   <vs-input
                       name="email"
                       icon-no-border
@@ -93,32 +94,27 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   data () {
     return {
       email: '',
       password: '',
+      // eslint-disable-next-line no-useless-escape
       reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     }
   },
   methods: {
-    submitted () {
-      console.log(this.email)
-      console.log(this.password)
-    },
     isEmailValid () {
-      var a = (this.email === '') ? '' : (this.reg.test(this.email)) ? false : true
-      return a
+      // return ((this.email === '') ? '' : (this.reg.test(this.email))? false : true)
+      return !((this.email === '') ? '' : (this.reg.test(this.email)))
     },
     isPasswordValid () {
-      var a = (this.password.length == 0 || this.password.length >= 6) ? false : true
-      return a
+      return (!(this.password.length === 0 || this.password.length >= 6))
     },
     isDisabled () {
-      var a = (this.reg.test(this.email) && this.password.length >= 6) ? false : true
-      return a
+      return (!(this.reg.test(this.email) && this.password.length >= 6))
     },
     submitted () {
       const { email, password } = this

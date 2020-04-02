@@ -15,13 +15,25 @@ import themeConfig, { colors } from '@/../themeConfig.js'
 // /////////////////////////////////////////////
 
 // *From Auth - Data will be received from auth provider
+// const userDefaults = {
+//   uid         : 0,          // From Auth
+//   displayName : 'John Doe', // From Auth
+//   about       : 'Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw brownie brownie marshmallow.',
+//   photoURL    : require('@/assets/images/portrait/small/avatar-s-11.jpg'), // From Auth
+//   status      : 'online',
+//   userRole    : 'admin'
+// }
+
+// Ali's work
 const userDefaults = {
-  uid         : 0,          // From Auth
-  displayName : 'John Doe', // From Auth
-  about       : 'Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw brownie brownie marshmallow.',
-  photoURL    : require('@/assets/images/portrait/small/avatar-s-11.jpg'), // From Auth
-  status      : 'online',
-  userRole    : 'admin'
+  id         : localStorage.getItem('user-id'),
+  firstname   : localStorage.getItem('user-firstname'),
+  lastname    : localStorage.getItem('user-lastname'),
+  about       : '',
+  photoURL    : localStorage.getItem('user-photo'),
+  status      : '',
+  usertype    : localStorage.getItem('user-usertype'),
+  email       : localStorage.getItem('user-email')
 }
 
 const userInfoLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {}
@@ -92,6 +104,7 @@ const state = {
   email: localStorage.getItem('user-email') || '',
   firstname: localStorage.getItem('user-firstname') || '',
   lastname: localStorage.getItem('user-lastname') || '',
+  usertype: localStorage.getItem('user-usertype') || '',
   status: '',
 
   // Can be used to get current window with

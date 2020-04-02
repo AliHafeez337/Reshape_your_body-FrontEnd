@@ -1,9 +1,9 @@
 <template>
-  <div class="the-navbar__user-meta flex items-center" v-if="activeUserInfo.displayName">
+  <div class="the-navbar__user-meta flex items-center" v-if="activeUserInfo.id">
 
     <div class="text-right leading-tight hidden sm:block">
-      <p class="font-semibold">{{ activeUserInfo.displayName }}</p>
-      <small>Available</small>
+      <p class="font-semibold">&nbsp;{{ activeUserInfo.firstname }}&nbsp;{{ activeUserInfo.lastname }}</p>
+      <small>&nbsp;{{ activeUserInfo.usertype }}</small>
     </div>
 
     <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
 import 'firebase/auth'
 
 export default {
