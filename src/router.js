@@ -29,15 +29,18 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  scrollBehavior () {
-    return { x: 0, y: 0 }
+  scrollBehavior() {
+    return {
+      x: 0,
+      y: 0
+    }
   },
   routes: [
 
     {
-    // =============================================================================
-    // MAIN LAYOUT ROUTES
-    // =============================================================================
+      // =============================================================================
+      // MAIN LAYOUT ROUTES
+      // =============================================================================
       path: '',
       component: () => import('./layouts/main/Main.vue'),
       children: [
@@ -53,7 +56,7 @@ const router = new Router({
         // =============================================================================
         // Application Routes
         // =============================================================================
-        
+
         /*
                   Below route is for demo purpose
                   You can use this route in your app
@@ -63,16 +66,23 @@ const router = new Router({
                         redirect: '/apps/eCommerce/shop',
                     }
                 */
-        
+
         {
           path: '/apps/user/user-list',
           name: 'app-user-list',
           component: () => import('@/views/apps/user/user-list/UserList.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'User' },
-              { title: 'List', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'User'
+              },
+              {
+                title: 'List',
+                active: true
+              }
             ],
             pageTitle: 'User List',
             rule: 'editor'
@@ -83,10 +93,17 @@ const router = new Router({
           name: 'app-user-view',
           component: () => import('@/views/apps/user/UserView.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'User' },
-              { title: 'View', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'User'
+              },
+              {
+                title: 'View',
+                active: true
+              }
             ],
             pageTitle: 'User View',
             rule: 'editor'
@@ -97,10 +114,17 @@ const router = new Router({
           name: 'app-user-edit',
           component: () => import('@/views/apps/user/user-edit/UserEdit.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'User' },
-              { title: 'Edit', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'User'
+              },
+              {
+                title: 'Edit',
+                active: true
+              }
             ],
             pageTitle: 'User Edit',
             rule: 'editor'
@@ -109,11 +133,94 @@ const router = new Router({
         // =============================================================================
         // UI ELEMENTS
         // =============================================================================
-        
+        {
+          path: '/ui-elements/data-list/list-view',
+          name: 'data-list-list-view',
+          component: () => import('@/views/ui-elements/data-list/list-view/DataListListView.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Data List'
+              },
+              {
+                title: 'List View',
+                active: true
+              }
+            ],
+            pageTitle: 'List View',
+            rule: 'editor'
+          }
+        },
+        {
+          path: '/ui-elements/data-list/thumb-view',
+          name: 'data-list-thumb-view',
+          component: () => import('@/views/ui-elements/data-list/thumb-view/DataListThumbView.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Data List'
+              },
+              {
+                title: 'Thumb View',
+                active: true
+              }
+            ],
+            pageTitle: 'Thumb View',
+            rule: 'editor'
+          }
+        },
+        {
+          path: '/ui-elements/grid/vuesax',
+          name: 'grid-vuesax',
+          component: () => import('@/views/ui-elements/grid/vuesax/GridVuesax.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Grid'
+              },
+              {
+                title: 'Vuesax',
+                active: true
+              }
+            ],
+            pageTitle: 'Grid',
+            rule: 'editor'
+          }
+        },
+        {
+          path: '/ui-elements/grid/tailwind',
+          name: 'grid-tailwind',
+          component: () => import('@/views/ui-elements/grid/tailwind/GridTailwind.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Grid'
+              },
+              {
+                title: 'Tailwind',
+                active: true
+              }
+            ],
+            pageTitle: 'Tailwind Grid',
+            rule: 'editor'
+          }
+        },
         // =============================================================================
         // COMPONENT ROUTES
         // =============================================================================
-        
+
         // =============================================================================
         // FORMS
         // =============================================================================
@@ -125,10 +232,17 @@ const router = new Router({
           name: 'form-element-select',
           component: () => import('./views/forms/form-elements/select/Select.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Form Elements' },
-              { title: 'Select', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Form Elements'
+              },
+              {
+                title: 'Select',
+                active: true
+              }
             ],
             pageTitle: 'Select',
             rule: 'editor'
@@ -139,10 +253,17 @@ const router = new Router({
           name: 'form-element-switch',
           component: () => import('./views/forms/form-elements/switch/Switch.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Form Elements' },
-              { title: 'Switch', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Form Elements'
+              },
+              {
+                title: 'Switch',
+                active: true
+              }
             ],
             pageTitle: 'Switch',
             rule: 'editor'
@@ -153,10 +274,17 @@ const router = new Router({
           name: 'form-element-checkbox',
           component: () => import('./views/forms/form-elements/checkbox/Checkbox.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Form Elements' },
-              { title: 'Checkbox', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Form Elements'
+              },
+              {
+                title: 'Checkbox',
+                active: true
+              }
             ],
             pageTitle: 'Checkbox',
             rule: 'editor'
@@ -167,10 +295,17 @@ const router = new Router({
           name: 'form-element-radio',
           component: () => import('./views/forms/form-elements/radio/Radio.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Form Elements' },
-              { title: 'Radio', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Form Elements'
+              },
+              {
+                title: 'Radio',
+                active: true
+              }
             ],
             pageTitle: 'Radio',
             rule: 'editor'
@@ -181,10 +316,17 @@ const router = new Router({
           name: 'form-element-input',
           component: () => import('./views/forms/form-elements/input/Input.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Form Elements' },
-              { title: 'Input', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Form Elements'
+              },
+              {
+                title: 'Input',
+                active: true
+              }
             ],
             pageTitle: 'Input',
             rule: 'editor'
@@ -195,10 +337,17 @@ const router = new Router({
           name: 'form-element-number-input',
           component: () => import('./views/forms/form-elements/number-input/NumberInput.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Form Elements' },
-              { title: 'Number Input', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Form Elements'
+              },
+              {
+                title: 'Number Input',
+                active: true
+              }
             ],
             pageTitle: 'Number Input',
             rule: 'editor'
@@ -209,10 +358,17 @@ const router = new Router({
           name: 'form-element-textarea',
           component: () => import('./views/forms/form-elements/textarea/Textarea.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Form Elements' },
-              { title: 'Textarea', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Form Elements'
+              },
+              {
+                title: 'Textarea',
+                active: true
+              }
             ],
             pageTitle: 'Textarea',
             rule: 'editor'
@@ -224,10 +380,17 @@ const router = new Router({
           name: 'forms-form-layouts',
           component: () => import('@/views/forms/FormLayouts.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Forms' },
-              { title: 'Form Layouts', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Forms'
+              },
+              {
+                title: 'Form Layouts',
+                active: true
+              }
             ],
             pageTitle: 'Form Layouts',
             rule: 'editor'
@@ -238,10 +401,17 @@ const router = new Router({
           name: 'extra-component-form-wizard',
           component: () => import('@/views/forms/form-wizard/FormWizard.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Extra Components' },
-              { title: 'Form Wizard', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Extra Components'
+              },
+              {
+                title: 'Form Wizard',
+                active: true
+              }
             ],
             pageTitle: 'Form Wizard',
             rule: 'editor'
@@ -252,10 +422,17 @@ const router = new Router({
           name: 'extra-component-form-validation',
           component: () => import('@/views/forms/form-validation/FormValidation.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Extra Components' },
-              { title: 'Form Validation', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Extra Components'
+              },
+              {
+                title: 'Form Validation',
+                active: true
+              }
             ],
             pageTitle: 'Form Validation',
             rule: 'editor'
@@ -266,10 +443,17 @@ const router = new Router({
           name: 'extra-component-form-input-group',
           component: () => import('@/views/forms/form-input-group/FormInputGroup.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Extra Components' },
-              { title: 'Form Input Group', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Extra Components'
+              },
+              {
+                title: 'Form Input Group',
+                active: true
+              }
             ],
             pageTitle: 'Form Input Group',
             rule: 'editor'
@@ -284,10 +468,17 @@ const router = new Router({
           name: 'page-user-settings',
           component: () => import('@/views/pages/user-settings/UserSettings.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'User Settings', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Pages'
+              },
+              {
+                title: 'User Settings',
+                active: true
+              }
             ],
             pageTitle: 'Settings',
             rule: 'editor'
@@ -298,10 +489,17 @@ const router = new Router({
           name: 'page-faq',
           component: () => import('@/views/pages/Faq.vue'),
           meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'FAQ', active: true }
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Pages'
+              },
+              {
+                title: 'FAQ',
+                active: true
+              }
             ],
             pageTitle: 'FAQ',
             rule: 'editor'
@@ -311,11 +509,11 @@ const router = new Router({
         // =============================================================================
         // CHARTS & MAPS
         // =============================================================================
-        
+
         // =============================================================================
         // EXTENSIONS
         // =============================================================================
-        
+
       ]
     },
     // =============================================================================
@@ -448,7 +646,12 @@ router.beforeEach((to, from, next) => {
     // If auth required, check login. If login fails redirect to login page
     if (to.meta.authRequired) {
       if (!(auth.isAuthenticated() || firebaseCurrentUser)) {
-        router.push({ path: '/pages/login', query: { to: to.path } })
+        router.push({
+          path: '/pages/login',
+          query: {
+            to: to.path
+          }
+        })
       }
     }
 
