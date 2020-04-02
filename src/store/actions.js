@@ -62,7 +62,8 @@ const actions = {
   },
   
   // Ali's work
-  login: ({commit, dispatch}, user) => {
+  // login: ({commit, dispatch}, user) => {
+  login: ({commit}, user) => {
     console.log(user)
     return new Promise((resolve, reject) => { // The Promise used for router redirect in login
       commit('AUTH_REQUEST')
@@ -95,30 +96,50 @@ const actions = {
 
   // logout: ({commit, dispatch, state}) => {
   logout: ({commit}) => {
-    getters.getToken().then((token) => {
-      console.log(token)
-      axios.defaults.headers.common['x-auth'] = token
-      
-      return new Promise((resolve, reject) => {
-        axios.post('/user/logout')
-          .then(res => {
-            console.log(res)
-            commit('AUTH_LOGOUT')
-            localStorage.removeItem('user-token') // clear your user's token from localstorage
-            localStorage.removeItem('user-id')
-            localStorage.removeItem('user-photo')
-            localStorage.removeItem('user-email')
-            localStorage.removeItem('user-firstname')
-            localStorage.removeItem('user-lastname')
-            localStorage.removeItem('user-usertype')
-            resolve()
-          })
-          .catch(err => {
-            commit('AUTH_ERROR', err)
-            reject(err)
-          })
-      })
+    
+    return new Promise((resolve, reject) => {
+      axios.post('/user/logout')
+        .then(res => {
+          console.log(res)
+          commit('AUTH_LOGOUT')
+          localStorage.removeItem('user-token') // clear your user's token from localstorage
+          localStorage.removeItem('user-id')
+          localStorage.removeItem('user-photo')
+          localStorage.removeItem('user-email')
+          localStorage.removeItem('user-firstname')
+          localStorage.removeItem('user-lastname')
+          localStorage.removeItem('user-usertype')
+          resolve()
+        })
+        .catch(err => {
+          commit('AUTH_ERROR', err)
+          reject(err)
+        })
     })
+    // getters.getToken().then((token) => {
+    //   console.log(token)
+    //   axios.defaults.headers.common['x-auth'] = token
+      
+    //   return new Promise((resolve, reject) => {
+    //     axios.post('/user/logout')
+    //       .then(res => {
+    //         console.log(res)
+    //         commit('AUTH_LOGOUT')
+    //         localStorage.removeItem('user-token') // clear your user's token from localstorage
+    //         localStorage.removeItem('user-id')
+    //         localStorage.removeItem('user-photo')
+    //         localStorage.removeItem('user-email')
+    //         localStorage.removeItem('user-firstname')
+    //         localStorage.removeItem('user-lastname')
+    //         localStorage.removeItem('user-usertype')
+    //         resolve()
+    //       })
+    //       .catch(err => {
+    //         commit('AUTH_ERROR', err)
+    //         reject(err)
+    //       })
+    //   })
+    // })
   }
 }
 
