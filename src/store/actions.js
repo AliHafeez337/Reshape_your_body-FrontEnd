@@ -79,9 +79,10 @@ const actions = {
           localStorage.setItem('user-email', resp.data.email)
           localStorage.setItem('user-firstname', resp.data.firstname)
           localStorage.setItem('user-lastname', resp.data.lastname)
-          commit('AUTH_SUCCESS', token, resp.data._id, resp.data.photo, resp.data.email, resp.data.firstname, resp.data.lastname)
+          localStorage.setItem('user-usertype', resp.data.usertype)
+          commit('AUTH_SUCCESS', token, resp.data._id, resp.data.photo, resp.data.email, resp.data.firstname, resp.data.lastname, resp.data.usertype)
           // you have your token, now log in your user :)
-          dispatch('USER_REQUEST')
+          // dispatch('USER_REQUEST')
           resolve(resp)
         })
         .catch(err => {
@@ -92,7 +93,8 @@ const actions = {
     })
   },
 
-  logout: ({commit, dispatch, state}) => {
+  // logout: ({commit, dispatch, state}) => {
+  logout: ({commit}) => {
     getters.getToken().then((token) => {
       console.log(token)
       axios.defaults.headers.common['x-auth'] = token
@@ -108,6 +110,7 @@ const actions = {
             localStorage.removeItem('user-email')
             localStorage.removeItem('user-firstname')
             localStorage.removeItem('user-lastname')
+            localStorage.removeItem('user-usertype')
             resolve()
           })
           .catch(err => {
