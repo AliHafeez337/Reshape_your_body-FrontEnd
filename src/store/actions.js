@@ -7,6 +7,7 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
+import axios from 'axios'
 const actions = {
 
   // /////////////////////////////////////////////
@@ -57,6 +58,34 @@ const actions = {
 
     // Change userInfo in localStorage and store
     dispatch('updateUserInfo', {userRole: payload.userRole})
+  },
+  
+  login: ({commit, dispatch}, user) => {
+    console.log(user)
+    return new Promise((resolve, reject) => { // The Promise used for router redirect in login
+      commit('AUTH_REQUEST')
+      axios.post('http://localhost:3000/user/login', {
+        email: user.email,
+        password: user.password
+      })
+        .then(resp => {
+          console.log(resp)
+          const token = resp.data.token
+          localStorage.setItem('user-token', token) // store the token in localstorage
+          localStorage.setItem('user-id', resp.data._id)
+          localStorage.setItem('user-photo', resp.data.photo)
+          localStorage.setItem('user-email', resp.data.email)
+          commit('AUTH_SUCCESS', token, resp.data._id, resp.data.photo, resp.data.email)
+          // you have your token, now log in your user :)
+          // dispatch('USER_REQUEST')
+          resolve(resp)
+        })
+        .catch(err => {
+          commit('AUTH_ERROR', err)
+          localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
+          reject(err)
+        })
+    })
   }
 }
 

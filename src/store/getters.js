@@ -27,7 +27,10 @@ const getters = {
 
   scrollbarTag: state => {
     return state.is_touch_device ? 'div' : 'VuePerfectScrollbar'
-  }
+  },
+  
+  isAuthenticated: state => !!state.token,
+  authStatus: state => state.status
 }
 
 export default getters
