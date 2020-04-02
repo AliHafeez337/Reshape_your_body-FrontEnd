@@ -113,6 +113,21 @@ const mutations = {
     }
     // Store data in localStorage
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
+  },
+
+  
+  AUTH_REQUEST: (state) => {
+    state.status = 'loading'
+  },
+  AUTH_SUCCESS: (state, token, id, photo, email) => {
+    state.status = 'success'
+    state.token = token
+    state.id = id
+    state.photo = photo
+    state.email = email
+  },
+  AUTH_ERROR: (state) => {
+    state.status = 'error'
   }
 }
 

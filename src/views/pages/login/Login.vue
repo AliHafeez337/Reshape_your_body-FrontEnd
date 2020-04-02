@@ -21,26 +21,67 @@
             </div>
 
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg">
-              <div class="px-8 pt-8 login-tabs-container">
+              <div class="p-8 login-tabs-container">
 
                 <div class="vx-card__title mb-4">
                   <h4 class="mb-4">Login</h4>
                   <p>Welcome back, please login to your account.</p>
                 </div>
 
-                <vs-tabs>
-                  <vs-tab label="JWT">
-                    <login-jwt></login-jwt>
-                  </vs-tab>
+                <div>
+                  <span class="text-danger text-sm" v-show="isEmailValid()">Email must be valid.</span>
+                  <vs-input
+                      name="email"
+                      icon-no-border
+                      icon="icon icon-user"
+                      icon-pack="feather"
+                      label-placeholder="Email"
+                      v-model="email"
+                      class="w-full"/>
 
-                  <vs-tab label="Firebase">
-                    <login-firebase></login-firebase>
-                  </vs-tab>
+                  <br />
+                  <span class="text-danger text-sm" v-show="isPasswordValid()">Password lenght must be greater than 6.</span>
+                  <vs-input
+                      type="password"
+                      name="password"
+                      icon-no-border
+                      icon="icon icon-lock"
+                      icon-pack="feather"
+                      label-placeholder="Password"
+                      v-model="password"
+                      class="w-full mt-6" />
+                  
+                  <div class="flex flex-wrap justify-between my-5">
+                      <!-- <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</vs-checkbox> -->
+                      <router-link to="">Forgot Password?</router-link>
+                  </div>
+                  <vs-button 
+                    v-validate="'required|email'" 
+                    placeholder="Your Email" 
+                    name="email" 
+                    class="float-left" 
+                    @click.prevent="submitted"
+                    :disabled="isDisabled()">Login</vs-button>
+                  <vs-button class="float-right"  type="border">Register</vs-button>
 
-                  <vs-tab label="Auth0">
-                    <login-auth0></login-auth0>
-                  </vs-tab>
-                </vs-tabs>
+                  <vs-divider>OR</vs-divider>
+
+                  <div class="social-login-buttons flex flex-wrap items-center mt-4">
+
+                    <p>Connect with &nbsp;&nbsp;&nbsp;</p>
+                    <!-- facebook -->
+                    <div class="bg-facebook pt-3 pb-2 px-4 rounded-lg cursor-pointer mr-4">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" class="text-white h-4 w-4 svg-inline--fa fa-facebook-f fa-w-9" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 512"><path fill="currentColor" d="M215.8 85H264V3.6C255.7 2.5 227.1 0 193.8 0 124.3 0 76.7 42.4 76.7 120.3V192H0v91h76.7v229h94V283h73.6l11.7-91h-85.3v-62.7c0-26.3 7.3-44.3 45.1-44.3z"></path></svg>
+                    </div>
+
+                    <p>or &nbsp;&nbsp;&nbsp;</p>
+                    <!-- GOOGLE -->
+                    <div class="bg-google pt-3 pb-2 px-4 rounded-lg cursor-pointer mr-4">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" class="text-white h-4 w-4 svg-inline--fa fa-google fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                    </div>
+
+                  </div>
+                </div>
 
               </div>
             </div>
@@ -51,31 +92,61 @@
   </div>
 </template>
 
-
 <script>
-import LoginJwt from './LoginJWT.vue'
-import LoginFirebase from './LoginFirebase.vue'
-import LoginAuth0 from './LoginAuth0.vue'
+import axios from 'axios'
 
 export default {
+  data () {
+    return {
+      email: '',
+      password: '',
+      reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+    }
+  },
+  methods: {
+    submitted () {
+      console.log(this.email)
+      console.log(this.password)
+    },
+    isEmailValid () {
+      var a = (this.email === '') ? '' : (this.reg.test(this.email)) ? false : true
+      return a
+    },
+    isPasswordValid () {
+      var a = (this.password.length == 0 || this.password.length >= 6) ? false : true
+      return a
+    },
+    isDisabled () {
+      var a = (this.reg.test(this.email) && this.password.length >= 6) ? false : true
+      return a
+    },
+    submitted () {
+      // axios.post('http://localhost:3000/user/login', {
+      // // axios.post('https://testing-272511.firebaseio.com/login.json', {
+      //   email: this.email,
+      //   password: this.password
+      // })
+      //   .then(res => console.log(res))
+      //   .catch(error => console.log(error))
+      
+      const { email, password } = this
+      this.$store.dispatch('login', { email, password}).then(() => {
+        this.$router.push('/')
+      })
+    }
+  },
   components: {
-    LoginJwt,
-    LoginFirebase,
-    LoginAuth0
   }
 }
 </script>
 
 <style lang="scss">
-.login-tabs-container {
-  min-height: 505px;
-
-  .con-tab {
-    padding-bottom: 14px;
-  }
-
-  .con-slot-tabs {
-    margin-top: 1rem;
+#page-login {
+  .social-login-buttons {
+    .bg-facebook { background-color: #1551b1 }
+    .bg-twitter { background-color: #00aaff }
+    .bg-google { background-color: #4285F4 }
+    .bg-github { background-color: #333 }
   }
 }
 </style>
