@@ -29,8 +29,17 @@ const getters = {
     return state.is_touch_device ? 'div' : 'VuePerfectScrollbar'
   },
   
+  // Ali's work
   isAuthenticated: state => !!state.token,
-  authStatus: state => state.status
+  authStatus: state => state.status,
+  getToken: (state) => {
+    // return state.token
+    return new Promise(async (resolve, reject) => {
+      const token = await localStorage.getItem('user-token')
+      // console.log(token)
+      resolve(token)
+    })
+  }
 }
 
 export default getters

@@ -121,14 +121,6 @@ export default {
       return a
     },
     submitted () {
-      // axios.post('http://localhost:3000/user/login', {
-      // // axios.post('https://testing-272511.firebaseio.com/login.json', {
-      //   email: this.email,
-      //   password: this.password
-      // })
-      //   .then(res => console.log(res))
-      //   .catch(error => console.log(error))
-      
       const { email, password } = this
       this.$store.dispatch('login', { email, password}).then(() => {
         this.$router.push('/')

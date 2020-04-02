@@ -85,10 +85,13 @@ const state = {
   theme                   : themeConfig.theme || 'light',
   themePrimaryColor       : colors.primary,
   
+  // Ali's work
   token: localStorage.getItem('user-token') || '',
   id: localStorage.getItem('user-id') || '',
   photo: localStorage.getItem('user-photo') || '',
   email: localStorage.getItem('user-email') || '',
+  firstname: localStorage.getItem('user-firstname') || '',
+  lastname: localStorage.getItem('user-lastname') || '',
   status: '',
 
   // Can be used to get current window with
