@@ -116,6 +116,11 @@ const mutations = {
   },
   
   // Ali's work
+  SET_USER: (state, obj) => {
+    obj.id = obj._id
+    obj.photoURL = obj.photo
+    state.tempUserObj = obj
+  },
   AUTH_REQUEST: (state) => {
     state.status = 'loading'
   },

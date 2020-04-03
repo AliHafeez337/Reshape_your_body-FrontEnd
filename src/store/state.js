@@ -9,6 +9,7 @@
 
 import navbarSearchAndPinList from '@/layouts/components/navbar/navbarSearchAndPinList'
 import themeConfig, { colors } from '@/../themeConfig.js'
+import getters from './getters'
 
 // /////////////////////////////////////////////
 // Helper
@@ -26,7 +27,7 @@ import themeConfig, { colors } from '@/../themeConfig.js'
 
 // Ali's work
 const userDefaults = {
-  id         : localStorage.getItem('user-id'),
+  id          : localStorage.getItem('user-id'),
   firstname   : localStorage.getItem('user-firstname'),
   lastname    : localStorage.getItem('user-lastname'),
   about       : '',
@@ -42,7 +43,7 @@ const userInfoLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {}
 // More data can be added by auth provider or other plugins/packages
 const getUserInfo = () => {
   const userInfo = {}
-
+  
   // Update property in user
   Object.keys(userDefaults).forEach((key) => {
     // If property is defined in localStorage => Use that
@@ -106,6 +107,7 @@ const state = {
   lastname: localStorage.getItem('user-lastname') || '',
   usertype: localStorage.getItem('user-usertype') || '',
   status: '',
+  tempUserObj: {},
 
   // Can be used to get current window with
   // Note: Above breakpoint state is for internal use of sidebar & navbar component

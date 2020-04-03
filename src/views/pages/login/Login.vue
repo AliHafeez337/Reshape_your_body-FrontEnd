@@ -63,7 +63,11 @@
                     class="float-left" 
                     @click.prevent="submitted"
                     :disabled="isDisabled()">Login</vs-button>
-                  <vs-button class="float-right"  type="border">Register</vs-button>
+                  <vs-button 
+                    class="float-right"  
+                    type="border"
+                    @click="()=>$router.push('/pages/register')"
+                    >Register</vs-button>
 
                   <vs-divider>OR</vs-divider>
 
