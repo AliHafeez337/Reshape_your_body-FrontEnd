@@ -68,11 +68,11 @@ const actions = {
     return new Promise((resolve, reject) => { // The Promise used for router redirect in login
       commit('AUTH_REQUEST')
       axios.post('/user/login', {
-      // axios.post('/user/login', {
         email: user.email,
         password: user.password
       })
         .then(resp => {
+          commit('SET_USER', resp.data)
           const token = resp.data.token
           localStorage.setItem('user-token', token) // store the token in localstorage
           localStorage.setItem('user-id', resp.data._id)

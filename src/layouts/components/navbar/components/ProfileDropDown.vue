@@ -47,7 +47,14 @@ export default {
   },
   computed: {
     activeUserInfo () {
-      return this.$store.state.AppActiveUser
+      if (this.$store.state.tempUserObj.token !== undefined) {
+        console.log(this.$store.state.tempUserObj)
+        return this.$store.state.tempUserObj
+      }
+      else {
+        console.log(this.$store.state.AppActiveUser)
+        return this.$store.state.AppActiveUser
+      }
     }
   },
   methods: {
@@ -56,7 +63,6 @@ export default {
         // This is just for demo Purpose. If user clicks on logout -> redirect
         this.$router.push('/pages/login').catch(() => {})
       })
-      
     }
   }
 }
