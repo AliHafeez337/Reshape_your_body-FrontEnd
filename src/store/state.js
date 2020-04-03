@@ -9,7 +9,6 @@
 
 import navbarSearchAndPinList from '@/layouts/components/navbar/navbarSearchAndPinList'
 import themeConfig, { colors } from '@/../themeConfig.js'
-import getters from './getters'
 
 // /////////////////////////////////////////////
 // Helper
@@ -43,7 +42,7 @@ const userInfoLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {}
 // More data can be added by auth provider or other plugins/packages
 const getUserInfo = () => {
   const userInfo = {}
-  
+
   // Update property in user
   Object.keys(userDefaults).forEach((key) => {
     // If property is defined in localStorage => Use that
@@ -108,6 +107,8 @@ const state = {
   usertype: localStorage.getItem('user-usertype') || '',
   status: '',
   tempUserObj: {},
+
+  registerRequest: '',
 
   // Can be used to get current window with
   // Note: Above breakpoint state is for internal use of sidebar & navbar component

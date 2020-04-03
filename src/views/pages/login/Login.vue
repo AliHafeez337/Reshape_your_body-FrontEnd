@@ -125,6 +125,15 @@ export default {
       this.$store.dispatch('login', { email, password}).then(() => {
         this.$router.push('/')
       })
+      .catch(e => {
+        this.colorAlert = 'danger'
+        this.$vs.dialog({
+          color: this.colorAlert,
+          title: `Unable to login`,
+          text: `You must be providing the wrong credentials...`,
+          accept: this.acceptAlert
+        })
+      })
     }
   },
   components: {

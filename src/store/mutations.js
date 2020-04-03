@@ -116,6 +116,12 @@ const mutations = {
   },
   
   // Ali's work
+  sendingRequest: (state) => {
+    state.registerRequest = 'loading'
+  },
+  responseRevieved: (state) => {
+    state.registerRequest = ''
+  },
   SET_USER: (state, obj) => {
     obj.id = obj._id
     obj.photoURL = obj.photo

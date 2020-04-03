@@ -7,7 +7,6 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-import getters from './getters'
 import axios from 'axios'
 const actions = {
 
@@ -62,6 +61,24 @@ const actions = {
   },
   
   // Ali's work
+  register: ({commit}, doc) => {
+    console.log(doc)
+    return new Promise((resolve, reject) => {
+      commit('sendingRequest')
+      axios.post('/user/register', doc)
+        .then(resp => {
+          console.log(resp)
+          commit('responseRevieved')
+          resolve(resp)
+        })
+        .catch(err => {
+          console.log(err)
+          commit('responseRevieved')
+          reject(err)
+        })
+    })
+  },
+  
   // login: ({commit, dispatch}, user) => {
   login: ({commit}, user) => {
     console.log(user)

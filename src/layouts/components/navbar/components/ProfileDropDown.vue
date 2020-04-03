@@ -38,6 +38,7 @@
 
 <script>
 import 'firebase/auth'
+import undefined from 'firebase/auth'
 
 export default {
   data () {
@@ -48,12 +49,30 @@ export default {
   computed: {
     activeUserInfo () {
       if (this.$store.state.tempUserObj.token !== undefined) {
-        console.log(this.$store.state.tempUserObj)
-        return this.$store.state.tempUserObj
+        var obj = {
+          id: this.$store.state.tempUserObj.id,
+          firstname: this.$store.state.tempUserObj.firstname,
+          lastname: this.$store.state.tempUserObj.lastname,
+          about: this.$store.state.tempUserObj.about,
+          photoURL: this.$store.state.tempUserObj.photoURL === undefined ? require('@/assets/images/user/user.png') : this.$store.state.AppActiveUser.photoURL,
+          usertype: this.$store.state.tempUserObj.usertype,
+          email: this.$store.state.tempUserObj.email
+        }
+        console.log(obj)
+        return obj
       }
       else {
-        console.log(this.$store.state.AppActiveUser)
-        return this.$store.state.AppActiveUser
+        var obj = {
+          id: this.$store.state.AppActiveUser.id,
+          firstname: this.$store.state.AppActiveUser.firstname,
+          lastname: this.$store.state.AppActiveUser.lastname,
+          about: this.$store.state.AppActiveUser.about,
+          photoURL: this.$store.state.AppActiveUser.photoURL === "undefined" ? require('@/assets/images/user/user.png') : this.$store.state.AppActiveUser.photoURL,
+          usertype: this.$store.state.AppActiveUser.usertype,
+          email: this.$store.state.AppActiveUser.email
+        }
+        console.log(obj)
+        return obj
       }
     }
   },
