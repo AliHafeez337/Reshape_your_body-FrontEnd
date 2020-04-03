@@ -44,11 +44,10 @@ const router = new Router({
       // =============================================================================
       path: '',
       component: () => import('./layouts/main/Main.vue'),
-      beforeEnter (to, from, next) {
+      beforeEnter(to, from, next) {
         if (state.token) {
           next()
-        }
-        else {
+        } else {
           next('/pages/login')
         }
       },
@@ -81,8 +80,7 @@ const router = new Router({
           name: 'app-user-list',
           component: () => import('@/views/apps/user/user-list/UserList.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -103,8 +101,7 @@ const router = new Router({
           name: 'app-user-view',
           component: () => import('@/views/apps/user/UserView.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -125,8 +122,7 @@ const router = new Router({
           name: 'app-user-edit',
           component: () => import('@/views/apps/user/user-edit/UserEdit.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -150,8 +146,7 @@ const router = new Router({
           name: 'data-list-list-view',
           component: () => import('@/views/ui-elements/data-list/list-view/DataListListView.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -172,8 +167,7 @@ const router = new Router({
           name: 'data-list-thumb-view',
           component: () => import('@/views/ui-elements/data-list/thumb-view/DataListThumbView.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -194,8 +188,7 @@ const router = new Router({
           name: 'grid-vuesax',
           component: () => import('@/views/ui-elements/grid/vuesax/GridVuesax.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -216,8 +209,7 @@ const router = new Router({
           name: 'grid-tailwind',
           component: () => import('@/views/ui-elements/grid/tailwind/GridTailwind.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -248,8 +240,7 @@ const router = new Router({
           name: 'form-element-select',
           component: () => import('./views/forms/form-elements/select/Select.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -270,8 +261,7 @@ const router = new Router({
           name: 'form-element-switch',
           component: () => import('./views/forms/form-elements/switch/Switch.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -292,8 +282,7 @@ const router = new Router({
           name: 'form-element-checkbox',
           component: () => import('./views/forms/form-elements/checkbox/Checkbox.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -314,8 +303,7 @@ const router = new Router({
           name: 'form-element-radio',
           component: () => import('./views/forms/form-elements/radio/Radio.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -336,8 +324,7 @@ const router = new Router({
           name: 'form-element-input',
           component: () => import('./views/forms/form-elements/input/Input.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -358,8 +345,7 @@ const router = new Router({
           name: 'form-element-number-input',
           component: () => import('./views/forms/form-elements/number-input/NumberInput.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -380,8 +366,7 @@ const router = new Router({
           name: 'form-element-textarea',
           component: () => import('./views/forms/form-elements/textarea/Textarea.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -403,8 +388,7 @@ const router = new Router({
           name: 'forms-form-layouts',
           component: () => import('@/views/forms/FormLayouts.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -425,8 +409,7 @@ const router = new Router({
           name: 'extra-component-form-wizard',
           component: () => import('@/views/forms/form-wizard/FormWizard.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -447,8 +430,7 @@ const router = new Router({
           name: 'extra-component-form-validation',
           component: () => import('@/views/forms/form-validation/FormValidation.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -469,8 +451,7 @@ const router = new Router({
           name: 'extra-component-form-input-group',
           component: () => import('@/views/forms/form-input-group/FormInputGroup.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -495,8 +476,7 @@ const router = new Router({
           name: 'page-user-settings',
           component: () => import('@/views/pages/user-settings/UserSettings.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -517,8 +497,7 @@ const router = new Router({
           name: 'page-faq',
           component: () => import('@/views/pages/Faq.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -531,6 +510,27 @@ const router = new Router({
               }
             ],
             pageTitle: 'FAQ',
+            rule: 'editor'
+          }
+        },
+        {
+          path: '/pages/addfaq',
+          name: 'page-faq',
+          component: () => import('@/views/pages/AddFaq.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Pages'
+              },
+              {
+                title: 'Add FAQ',
+                active: true
+              }
+            ],
+            pageTitle: 'Add FAQ',
             rule: 'editor'
           }
         }
@@ -570,11 +570,10 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next('/')
-            }
-            else {
+            } else {
               next()
             }
           }
