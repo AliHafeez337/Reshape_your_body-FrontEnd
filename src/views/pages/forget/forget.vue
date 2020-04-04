@@ -6,8 +6,8 @@
 
           <div class="vx-row no-gutter justify-center items-center">
 
-            <div class="vx-col hidden lg:block lg:w-1/2">
-              <img src="@/assets/images/pages/login.png" alt="login" class="mx-auto">
+            <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
+                <img src="@/assets/images/pages/reset-password.png" alt="login" class="mx-auto">
             </div>
 
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg">
