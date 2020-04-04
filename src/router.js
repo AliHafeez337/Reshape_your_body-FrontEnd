@@ -47,7 +47,7 @@ const router = new Router({
       beforeEnter (to, from, next) {
         if (state.token) {
           next()
-        } 
+        }
         else {
           next('/pages/login')
         }
@@ -592,10 +592,11 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter(to, from, next) {
+          beforeEnter (to, from, next) {
             if (state.token) {
               next('/')
-            } else {
+            }
+            else {
               next()
             }
           }
