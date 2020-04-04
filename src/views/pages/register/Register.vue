@@ -86,8 +86,11 @@
                                   ref="password"
                                   type="password"
                                   data-vv-validate-on="blur"
-                                  v-validate="'required|min:6|max:10'"
+                                  v-validate="'required|min:6'"
                                   name="password"
+                                  icon-no-border
+                                  icon="icon-lock"
+                                  icon-pack="feather"
                                   label-placeholder="Password"
                                   placeholder="Password"
                                   v-model="password"
@@ -96,10 +99,13 @@
 
                                 <vs-input
                                   type="password"
-                                  v-validate="'min:6|max:10|confirmed:password'"
+                                  v-validate="'min:6|confirmed:password'"
                                   data-vv-validate-on="blur"
                                   data-vv-as="password"
                                   name="confirm_password"
+                                  icon-no-border
+                                  icon="icon-lock"
+                                  icon-pack="feather"
                                   label-placeholder="Confirm Password"
                                   placeholder="Confirm Password"
                                   v-model="confirm_password"

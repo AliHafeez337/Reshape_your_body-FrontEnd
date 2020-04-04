@@ -602,6 +602,38 @@ const router = new Router({
           }
         },
         {
+          path: '/pages/forget',
+          name: 'page-forget',
+          component: () => import('@/views/pages/forget/forget.vue'),
+          meta: {
+            rule: 'editor'
+          },
+          beforeEnter (to, from, next) {
+            if (state.token) {
+              next('/')
+            }
+            else {
+              next()
+            }
+          }
+        },
+        {
+          path: '/pages/confirm',
+          name: 'page-confirm',
+          component: () => import('@/views/pages/forget/confirm.vue'),
+          meta: {
+            rule: 'editor'
+          },
+          beforeEnter (to, from, next) {
+            if (state.token) {
+              next('/')
+            }
+            else {
+              next()
+            }
+          }
+        },
+        {
           path: '/pages/register',
           name: 'page-register',
           component: () => import('@/views/pages/register/Register.vue'),
