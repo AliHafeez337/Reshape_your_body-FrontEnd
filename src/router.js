@@ -76,6 +76,22 @@ const router = new Router({
                     }
                 */
 
+          {
+          path: '/pages/profile',
+          name: 'pages-profile',
+          component: () => import('@/views/pages/profile.vue'),
+          meta: {
+            rule: 'editor'
+          },
+          beforeEnter (to, from, next) {
+            if (state.token) {
+              next()
+            }
+            else {
+              next('/pages/login')
+            }
+          }
+        },
         {
           path: '/apps/user/user-list',
           name: 'app-user-list',
@@ -645,14 +661,6 @@ const router = new Router({
           path: '/pages/forgot-password',
           name: 'page-forgot-password',
           component: () => import('@/views/pages/ForgotPassword.vue'),
-          meta: {
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/pages/reset-password',
-          name: 'page-reset-password',
-          component: () => import('@/views/pages/ResetPassword.vue'),
           meta: {
             rule: 'editor'
           }

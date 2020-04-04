@@ -236,7 +236,10 @@ export default {
 
     const userId = this.$route.params.userId
     this.$store.dispatch('userManagement/fetchUser', userId)
-      .then(res => { this.user_data = res.data })
+      .then(res => { 
+        console.log(res.data)
+        this.user_data = res.data
+      })
       .catch(err => {
         if (err.response.status === 404) {
           this.user_not_found = true

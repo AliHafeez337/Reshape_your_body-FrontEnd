@@ -61,29 +61,41 @@ const actions = {
   },
   
   // Ali's work
+  me: ({commit}) => {
+    return new Promise((resolve, reject) => {
+      commit('AUTH_REQUEST')
+      axios.get('/user/me').then(res => {
+        commit('REQUEST_COMPLETE')
+        resolve(res)
+      }).catch(err => {
+        commit('REQUEST_COMPLETE')
+        reject(err)
+      })
+    })
+  },
   confirm: ({commit}, doc) => {
     console.log(doc)
-    return new Promise((resolve, reject) => { // The Promise used for router redirect in login
+    return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
       axios.patch('/user/reset', doc).then(res => {
         commit('REQUEST_COMPLETE')
-        resolve(doc)
+        resolve(res)
       }).catch(err => {
         commit('REQUEST_COMPLETE')
-        reject(doc)
+        reject(err)
       })
     })
   },
   forget: ({commit}, doc) => {
     console.log(doc)
-    return new Promise((resolve, reject) => { // The Promise used for router redirect in login
+    return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
       axios.post('/user/forget', doc).then(res => {
         commit('REQUEST_COMPLETE')
-        resolve(doc)
+        resolve(res)
       }).catch(err => {
         commit('REQUEST_COMPLETE')
-        reject(doc)
+        reject(err)
       })
     })
   },
