@@ -105,6 +105,51 @@
                                   v-model="confirm_password"
                                   class="w-full mt-6" />
                                 <span class="text-danger text-sm">{{ errors.first('confirm_password') }}</span>
+                                
+                                <br />
+
+                                <!-- <vs-dropdown>
+                                    <a class="flex items-center" href="#">
+                                        Add languages
+                                        <i class="material-icons"> expand_more </i>
+                                    </a>
+
+                                    <vs-dropdown-menu>
+                                      <vs-dropdown-item 
+                                        v-for="(item, index) in languages" 
+                                        :key="index"
+                                        @click="addLanuage(item, index)"
+                                        > {{item}} </vs-dropdown-item>
+                                    </vs-dropdown-menu>
+                                </vs-dropdown> -->
+
+                                <div class="dropdown-button-container">
+                                  <vs-button class="btnx" type="filled">Add languages</vs-button>
+                                  <vs-dropdown>
+                                      <vs-button class="btn-drop" type="filled" icon="expand_more"></vs-button>
+                                      <vs-dropdown-menu>
+                                          <vs-dropdown-item 
+                                            v-for="(item, index) in languages" 
+                                            :key="index"
+                                            @click="addLanuage(item, index)"
+                                            > {{item}} </vs-dropdown-item>
+                                      </vs-dropdown-menu>
+                                  </vs-dropdown>
+                                </div>
+                                
+                                <div class="demo-alignment">
+                                    <vs-list>
+                                        <vs-list-item 
+                                        v-for="(item, index) in addedLanguages" 
+                                        :key="index"
+                                        >{{item}}&nbsp;&nbsp;&nbsp;
+                                    <feather-icon 
+                                      icon="Trash2Icon" 
+                                      svgClasses="remove h-5 w-5 hover:text-danger cursor-pointer"
+                                      @click="removeLanuage(item, index)"
+                                      /></vs-list-item>
+                                    </vs-list>
+                                </div>
 
                                 <vs-input
                                   data-vv-validate-on="blur"
@@ -114,7 +159,7 @@
                                   placeholder="Address 1"
                                   v-model="address1"
                                   class="w-full mt-6" />
-                                  
+
                                 <vs-input
                                   data-vv-validate-on="blur"
                                   name="address2"
@@ -189,6 +234,9 @@ export default {
   },
   data () {
     return {
+      languages: ['English', 'German', 'French'],
+      addedLanguages: [],
+
       showDate: new Date(),
       disabledFrom: false,
       id: 0,
@@ -242,6 +290,18 @@ export default {
     }
   },
   methods: {
+    addLanuage(language, index) {
+      console.log(language)
+      this.addedLanguages.push(language)
+      this.languages.splice(index, 1)
+      console.log(this.addedLanguages)
+    },
+    removeLanuage(language, index) {
+      console.log(language)
+      this.addedLanguages.splice(index, 1)
+      this.languages.push(language)
+      console.log(this.addedLanguages)
+    },
     // successUpload(){
     //   this.$vs.notify({color:'success',title:'Upload Success',text:'Lorem ipsum dolor sit amet, consectetur'})
     // },
@@ -277,6 +337,7 @@ export default {
             email: this.email,
             password: this.password,
             phone: this.validphone,
+            languages: this.addedLanguages,
             address1: this.address1,
             address2: this.address2,
             city: this.city,
@@ -288,7 +349,7 @@ export default {
         if (this.birthDate !== ''){
           payload.userDetails.birthdate = new Date(this.birthDate).toISOString()
         }
-        // console.log(payload)
+        console.log(payload)
         this.$store.dispatch('register', payload.userDetails).then(() => {
           this.colorAlert = 'success'
           this.$vs.dialog({
@@ -317,7 +378,7 @@ export default {
 
 <style lang="scss">
 .register-tabs-container {
-  min-height: 950px;
+  min-height: 1100px;
 
 }
 .formRegister {
