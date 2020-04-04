@@ -130,6 +130,9 @@ const mutations = {
   AUTH_REQUEST: (state) => {
     state.status = 'loading'
   },
+  REQUEST_COMPLETE: (state) => {
+    state.status = ''
+  },
   AUTH_SUCCESS: (state, token, id, photo, email, first, last, type) => {
     state.status = 'success'
     state.token = token

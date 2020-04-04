@@ -61,6 +61,32 @@ const actions = {
   },
   
   // Ali's work
+  confirm: ({commit}, doc) => {
+    console.log(doc)
+    return new Promise((resolve, reject) => { // The Promise used for router redirect in login
+      commit('AUTH_REQUEST')
+      axios.patch('/user/reset', doc).then(res => {
+        commit('REQUEST_COMPLETE')
+        resolve(doc)
+      }).catch(err => {
+        commit('REQUEST_COMPLETE')
+        reject(doc)
+      })
+    })
+  },
+  forget: ({commit}, doc) => {
+    console.log(doc)
+    return new Promise((resolve, reject) => { // The Promise used for router redirect in login
+      commit('AUTH_REQUEST')
+      axios.post('/user/forget', doc).then(res => {
+        commit('REQUEST_COMPLETE')
+        resolve(doc)
+      }).catch(err => {
+        commit('REQUEST_COMPLETE')
+        reject(doc)
+      })
+    })
+  },
   register: ({commit}, doc) => {
     console.log(doc)
     return new Promise((resolve, reject) => {
