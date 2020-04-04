@@ -533,6 +533,28 @@ const router = new Router({
             pageTitle: 'FAQ',
             rule: 'editor'
           }
+        },
+        {
+          path: '/pages/addfaq',
+          name: 'page-faq',
+          component: () => import('@/views/pages/AddFaq.vue'),
+          meta: {
+            breadcrumb: [
+              {
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Pages'
+              },
+              {
+                title: 'Add FAQ',
+                active: true
+              }
+            ],
+            pageTitle: 'Add FAQ',
+            rule: 'editor'
+          }
         }
 
         // =============================================================================
