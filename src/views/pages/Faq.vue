@@ -38,8 +38,12 @@
                     <vs-collapse-item v-for="(que,index) in filteredFaq" class="faq-bg rounded-lg" :class="{'mt-0': !index}" :key="que.id">
                         <div slot="header">
                           <h5 :style="{display:inline}">{{ que.question }}</h5>
-                          <vx-tooltip :style="{display:inline,float:'right'}" color="danger" text="Delete this faq">
-                            <vs-button :style="{display:inline}" color="danger" type="line" icon="delete" size="large" @click="deleteFaq(que._id)"></vs-button>
+                          
+                          <vx-tooltip v-if="(activeUserInfo.id)&&(activeUserInfo.id===que.askedBy._id || activeUserInfo.usertype==='admin')" :style="{display:inline,float:'right'}" color="danger" text="Delete this faq">
+                            <vs-button v-if="(activeUserInfo.id)&&(activeUserInfo.id===que.askedBy._id || activeUserInfo.usertype==='admin')" :style="{display:inline}" color="danger" type="line" icon="delete" size="large" @click="deleteFaq(que._id)"></vs-button>
+                          </vx-tooltip>
+                          <vx-tooltip v-if="activeUserInfo.id===que.askedBy._id" :style="{display:inline,float:'right'}" color="success" text="Edit this faq">
+                            <vs-button :style="{display:inline}" color="success" type="line" icon="edit" size="large" @click="goToEdit(que._id)"></vs-button>
                           </vx-tooltip><br>
                           <p :style="pSet" class="dark"><user-plus-icon size="1.6x" class="custom-class"></user-plus-icon>&nbsp;POSTED BY:&nbsp;(&nbsp;</p>
                           <span :style="spanSet" class="success">{{que.askedBy.firstname}}</span>&nbsp;
@@ -121,15 +125,47 @@
           else if (this.faqFilter === 4) return faq.categoryId === 4 && (faq.question.toLowerCase().includes(this.faqSearchQuery.toLowerCase()) || faq.answer.toLowerCase().includes(this.faqSearchQuery.toLowerCase()))
           else if (this.faqFilter === 5) return faq.categoryId === 5 && (faq.question.toLowerCase().includes(this.faqSearchQuery.toLowerCase()) || faq.answer.toLowerCase().includes(this.faqSearchQuery.toLowerCase()))
         })
+      },
+      activeUserInfo () {
+      if (this.$store.state.tempUserObj.token !== undefined) {
+        var obj = {
+          id: this.$store.state.tempUserObj.id,
+          firstname: this.$store.state.tempUserObj.firstname,
+          lastname: this.$store.state.tempUserObj.lastname,
+          about: this.$store.state.tempUserObj.about,
+          photoURL: this.$store.state.tempUserObj.photoURL === undefined ? require('@/assets/images/user/user.png') : this.$store.state.AppActiveUser.photoURL,
+          usertype: this.$store.state.tempUserObj.usertype,
+          email: this.$store.state.tempUserObj.email
+        }
+        console.log(obj)
+        return obj
       }
+      else {
+        var obj = {
+          id: this.$store.state.AppActiveUser.id,
+          firstname: this.$store.state.AppActiveUser.firstname,
+          lastname: this.$store.state.AppActiveUser.lastname,
+          about: this.$store.state.AppActiveUser.about,
+          photoURL: this.$store.state.AppActiveUser.photoURL === "undefined" ? require('@/assets/images/user/user.png') : this.$store.state.AppActiveUser.photoURL,
+          usertype: this.$store.state.AppActiveUser.usertype,
+          email: this.$store.state.AppActiveUser.email
+        }
+        console.log(obj)
+        return obj
+      }
+    }
     },
     methods: {
       goToAddFaqPage (){
         this.$router.push('/pages/addfaq')
       },
+      goToEdit(idd){
+        this.$router.push({ name: 'page-faq-edit', params: { id: idd } })
+      },
       deleteFaq(id){
         return new Promise((resolve, reject) => {
-        axios.delete('/faq/deleteQuestion',{
+        if(this.activeUserInfo.usertype==='admin'){
+          axios.delete('/faq/deleteQuestion',{
           params: {
             faqId:id
           }
@@ -145,6 +181,25 @@
               console.log(err);
               reject(err)
           })
+        }else{
+          axios.delete('/faq/deleteQuestionByOwner',{
+          params: {
+            faqId:id
+          }
+        }).then(resp => {
+          console.log(resp);
+          for(let index=0; index<this.faqs.length; index++){
+            if(this.faqs[index]._id==id){
+              this.faqs.splice(index,1);
+            }
+          }
+          resolve(resp)
+          }).catch(err => {
+              console.log(err);
+              reject(err)
+          })
+        }
+        
         });
       }
     },
