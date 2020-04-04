@@ -44,12 +44,11 @@ const router = new Router({
       // =============================================================================
       path: '',
       component: () => import('./layouts/main/Main.vue'),
-      beforeEnter(to, from, next) {
+      beforeEnter (to, from, next) {
         if (state.token) {
           next()
         } 
-        else 
-        {
+        else {
           next('/pages/login')
         }
       },
