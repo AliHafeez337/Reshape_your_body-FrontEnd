@@ -223,7 +223,8 @@
         }
         resolve(resp)
         }).catch(err => {
-            console.log(err);
+            console.log(err)
+            this.$router.push('/pages/login')
             reject(err)
         })
     });

@@ -78,11 +78,30 @@ export default {
   },
   methods: {
     logout () {
+      // this.$router.replace({ name: 'page-login', force: true });
       this.$store.dispatch('logout').then(() => {
         // This is just for demo Purpose. If user clicks on logout -> redirect
-        this.$router.push('/pages/login').catch(() => {})
+        // this.$router.push('/pages/login').catch(() => {})
+        setTimeout(() => {
+          console.log("now the then runs")
+          this.$router.replace('/pages/login')
+        }, 2000)
       })
-      .catch(err => this.$router.push('/pages/login'))
+      .catch(err => {
+        console.log("errrrrr")
+        setTimeout(() => {
+          console.log("now the catch runs")
+          this.$router.replace('/pages/login')
+        }, 2000)
+      })
+      this.$vs.notify({
+        title: 'Success',
+        text: 'You logged out successfully',
+        color: 'success',
+        iconPack: 'feather',
+        position: 'top-center',
+        icon:'icon-check'
+      })
     }
   }
 }

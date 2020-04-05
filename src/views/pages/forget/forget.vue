@@ -75,6 +75,14 @@ export default {
       const { email } = this
       console.log(this.email)
       this.$store.dispatch('forget', {email}).then(() => {
+          this.$vs.notify({
+            title: 'Warning',
+            text: 'Check your email',
+            color: 'warning',
+            iconPack: 'feather',
+            position: 'top-center',
+            icon:'icon-email'
+          })
           this.$router.push('/pages/confirm')
         })
         .catch(e => {

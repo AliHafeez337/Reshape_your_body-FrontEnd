@@ -123,6 +123,14 @@ export default {
     submitted () {
       const { email, password } = this
       this.$store.dispatch('login', { email, password}).then(() => {
+        this.$vs.notify({
+          title: 'Success',
+          text: 'You logged in successfully',
+          color: 'success',
+          iconPack: 'feather',
+          position: 'top-center',
+          icon:'icon-check'
+        })
         this.$router.push('/')
       })
       .catch(e => {

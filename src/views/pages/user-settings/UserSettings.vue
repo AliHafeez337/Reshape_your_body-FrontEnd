@@ -7,6 +7,11 @@
         <user-settings-general />
       </div>
     </vs-tab>
+    <vs-tab icon-pack="feather" icon="icon-info" :label="!isSmallerScreen ? 'Info' : ''">
+      <div class="tab-info md:ml-4 md:mt-0 mt-4 ml-0">
+        <user-settings-info />
+      </div>
+    </vs-tab>
     <vs-tab icon-pack="feather" icon="icon-lock" :label="!isSmallerScreen ? 'Change Password' : ''">
       <div class="tab-change-pwd md:ml-4 md:mt-0 mt-4 ml-0">
         <user-settings-change-password />
@@ -17,9 +22,9 @@
         <user-settings-change-email />
       </div>
     </vs-tab>
-    <vs-tab icon-pack="feather" icon="icon-info" :label="!isSmallerScreen ? 'Info' : ''">
-      <div class="tab-info md:ml-4 md:mt-0 mt-4 ml-0">
-        <user-settings-info />
+    <vs-tab icon-pack="feather" icon="icon-user-minus" :label="!isSmallerScreen ? 'Delete Account' : ''">
+      <div class="tab-change-pwd md:ml-4 md:mt-0 mt-4 ml-0">
+        <user-settings-delete />
       </div>
     </vs-tab>
   </vs-tabs>
@@ -29,6 +34,7 @@
 import UserSettingsGeneral from './UserSettingsGeneral.vue'
 import UserSettingsChangePassword from './UserSettingsChangePassword.vue'
 import UserSettingsChangeEmail from './UserSettingsChangeEmail.vue'
+import UserSettingsDelete from './UserSettingsDelete.vue'
 import UserSettingsInfo from './UserSettingsInfo.vue'
 
 export default {
@@ -36,6 +42,7 @@ export default {
     UserSettingsGeneral,
     UserSettingsChangePassword,
     UserSettingsChangeEmail,
+    UserSettingsDelete,
     UserSettingsInfo
   },
   data () {
