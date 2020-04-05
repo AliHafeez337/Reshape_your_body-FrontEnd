@@ -12,6 +12,11 @@
         <user-settings-change-password />
       </div>
     </vs-tab>
+    <vs-tab icon-pack="feather" icon="icon-mail" :label="!isSmallerScreen ? 'Change Email' : ''">
+      <div class="tab-change-pwd md:ml-4 md:mt-0 mt-4 ml-0">
+        <user-settings-change-email />
+      </div>
+    </vs-tab>
     <vs-tab icon-pack="feather" icon="icon-info" :label="!isSmallerScreen ? 'Info' : ''">
       <div class="tab-info md:ml-4 md:mt-0 mt-4 ml-0">
         <user-settings-info />
@@ -23,12 +28,14 @@
 <script>
 import UserSettingsGeneral from './UserSettingsGeneral.vue'
 import UserSettingsChangePassword from './UserSettingsChangePassword.vue'
+import UserSettingsChangeEmail from './UserSettingsChangeEmail.vue'
 import UserSettingsInfo from './UserSettingsInfo.vue'
 
 export default {
   components: {
     UserSettingsGeneral,
     UserSettingsChangePassword,
+    UserSettingsChangeEmail,
     UserSettingsInfo
   },
   data () {
