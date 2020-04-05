@@ -34,7 +34,7 @@
                   <vs-input
                       name="email"
                       icon-no-border
-                      icon="icon icon-user"
+                      icon="icon icon-mail"
                       icon-pack="feather"
                       label-placeholder="Email"
                       v-model="email"

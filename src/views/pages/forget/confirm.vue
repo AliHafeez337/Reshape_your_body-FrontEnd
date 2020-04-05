@@ -37,7 +37,7 @@
                         data-vv-validate-on="blur"
                         name="email"
                         icon-no-border
-                        icon="icon icon-user"
+                        icon="icon icon-mail"
                         icon-pack="feather"
                         type="email"
                         label-placeholder="Email"

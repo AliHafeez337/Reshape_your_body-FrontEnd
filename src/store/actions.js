@@ -61,15 +61,29 @@ const actions = {
   },
   
   // Ali's work
-  edit: ({commit}, doc) => {
+  editMail: ({commit}, doc) => {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
-      axios.patch('/user/edit', doc).then(res => {
+      axios.patch('/user/editEmail', doc).then(res => {
         console.log(res)
         commit('REQUEST_COMPLETE')
         resolve(res)
       }).catch(err => {
         console.log(err)
+        commit('REQUEST_COMPLETE')
+        reject(err)
+      })
+    })
+  }, 
+  edit: ({commit}, doc) => {
+    return new Promise((resolve, reject) => {
+      commit('AUTH_REQUEST')
+      axios.patch('/user/edit', doc).then(res => {
+        // console.log(res)
+        commit('REQUEST_COMPLETE')
+        resolve(res)
+      }).catch(err => {
+        // console.log(err)
         commit('REQUEST_COMPLETE')
         reject(err)
       })

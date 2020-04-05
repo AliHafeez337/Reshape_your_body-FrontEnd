@@ -24,7 +24,7 @@
                   <vs-input
                       name="email"
                       icon-no-border
-                      icon="icon icon-user"
+                      icon="icon icon-mail"
                       icon-pack="feather"
                       label-placeholder="Email"
                       v-model="email"
@@ -75,17 +75,17 @@ export default {
       const { email } = this
       console.log(this.email)
       this.$store.dispatch('forget', {email}).then(() => {
-        this.$router.push('/pages/confirm')
-      })
-      .catch(e => {
-        this.colorAlert = 'danger'
-        this.$vs.dialog({
-          color: this.colorAlert,
-          title: `Unable to send email`,
-          text: `May be you the email address you entered is not registered...`,
-          accept: this.acceptAlert
+          this.$router.push('/pages/confirm')
         })
-      })
+        .catch(e => {
+          this.colorAlert = 'danger'
+          this.$vs.dialog({
+            color: this.colorAlert,
+            title: `Unable to send email`,
+            text: `May be you the email address you entered is not registered...`,
+            accept: this.acceptAlert
+          })
+        })
     }
   },
   components: {
