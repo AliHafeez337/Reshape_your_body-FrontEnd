@@ -44,8 +44,7 @@ const router = new Router({
       // =============================================================================
       path: '',
       component: () => import('./layouts/main/Main.vue'),
-      beforeEnter (to, from, next) 
-      {
+      beforeEnter(to, from, next) {
         if (state.token) {
           next()
         } else {
@@ -83,8 +82,7 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-        {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next()
             } else {
@@ -97,8 +95,7 @@ const router = new Router({
           name: 'app-user-list',
           component: () => import('@/views/apps/user/user-list/UserList.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -119,8 +116,7 @@ const router = new Router({
           name: 'app-user-view',
           component: () => import('@/views/apps/user/UserView.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -141,8 +137,7 @@ const router = new Router({
           name: 'app-user-edit',
           component: () => import('@/views/apps/user/user-edit/UserEdit.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -162,20 +157,16 @@ const router = new Router({
         // UI ELEMENTS
         // =============================================================================
         {
-          path: '/ui-elements/data-list/list-view',
+          path: '/key/list-view',
           name: 'data-list-list-view',
-          component: () => import('@/views/ui-elements/data-list/list-view/DataListListView.vue'),
+          component: () => import('@/views/ui-elements/data-list/list-view/Key.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
               {
-                title: 'Data List'
-              },
-              {
-                title: 'List View',
+                title: 'Keys',
                 active: true
               }
             ],
@@ -183,35 +174,13 @@ const router = new Router({
             rule: 'editor'
           }
         },
-        {
-          path: '/ui-elements/data-list/thumb-view',
-          name: 'data-list-thumb-view',
-          component: () => import('@/views/ui-elements/data-list/thumb-view/DataListThumbView.vue'),
-          meta: {
-            breadcrumb: [
-              {
-                title: 'Home',
-                url: '/'
-              },
-              {
-                title: 'Data List'
-              },
-              {
-                title: 'Thumb View',
-                active: true
-              }
-            ],
-            pageTitle: 'Thumb View',
-            rule: 'editor'
-          }
-        },
+
         {
           path: '/ui-elements/grid/vuesax',
           name: 'grid-vuesax',
           component: () => import('@/views/ui-elements/grid/vuesax/GridVuesax.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -232,8 +201,7 @@ const router = new Router({
           name: 'grid-tailwind',
           component: () => import('@/views/ui-elements/grid/tailwind/GridTailwind.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -264,8 +232,7 @@ const router = new Router({
           name: 'form-element-select',
           component: () => import('./views/forms/form-elements/select/Select.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -286,8 +253,7 @@ const router = new Router({
           name: 'form-element-switch',
           component: () => import('./views/forms/form-elements/switch/Switch.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -308,8 +274,7 @@ const router = new Router({
           name: 'form-element-checkbox',
           component: () => import('./views/forms/form-elements/checkbox/Checkbox.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -330,8 +295,7 @@ const router = new Router({
           name: 'form-element-radio',
           component: () => import('./views/forms/form-elements/radio/Radio.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -352,8 +316,7 @@ const router = new Router({
           name: 'form-element-input',
           component: () => import('./views/forms/form-elements/input/Input.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -374,8 +337,7 @@ const router = new Router({
           name: 'form-element-number-input',
           component: () => import('./views/forms/form-elements/number-input/NumberInput.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -396,8 +358,7 @@ const router = new Router({
           name: 'form-element-textarea',
           component: () => import('./views/forms/form-elements/textarea/Textarea.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -419,8 +380,7 @@ const router = new Router({
           name: 'forms-form-layouts',
           component: () => import('@/views/forms/FormLayouts.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -441,8 +401,7 @@ const router = new Router({
           name: 'extra-component-form-wizard',
           component: () => import('@/views/forms/form-wizard/FormWizard.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -463,8 +422,7 @@ const router = new Router({
           name: 'extra-component-form-validation',
           component: () => import('@/views/forms/form-validation/FormValidation.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -485,8 +443,7 @@ const router = new Router({
           name: 'extra-component-form-input-group',
           component: () => import('@/views/forms/form-input-group/FormInputGroup.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -511,8 +468,7 @@ const router = new Router({
           name: 'page-user-settings',
           component: () => import('@/views/pages/user-settings/UserSettings.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -533,8 +489,7 @@ const router = new Router({
           name: 'page-faq',
           component: () => import('@/views/pages/Faq.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -555,8 +510,7 @@ const router = new Router({
           name: 'page-faq-add',
           component: () => import('@/views/pages/AddFaq.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -578,8 +532,7 @@ const router = new Router({
           props: true,
           component: () => import('@/views/pages/EditFaq.vue'),
           meta: {
-            breadcrumb: [
-              {
+            breadcrumb: [{
                 title: 'Home',
                 url: '/'
               },
@@ -630,8 +583,7 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-          {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next('/')
             } else {
@@ -646,8 +598,7 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-          {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next('/')
             } else {
@@ -662,8 +613,7 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-          {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next('/')
             } else {
