@@ -61,6 +61,23 @@ const actions = {
   },
   
   // Ali's work
+  deleteAccount: ({commit}, doc) => {
+    return new Promise((resolve, reject) => {
+      commit('AUTH_REQUEST')
+      axios.delete('/user/delete', {
+      data: {
+        password: doc.password
+      }}).then(res => {
+        console.log(res)
+        commit('REQUEST_COMPLETE')
+        resolve(res)
+      }).catch(err => {
+        console.log(err)
+        commit('REQUEST_COMPLETE')
+        reject(err)
+      })
+    })
+  }, 
   editMail: ({commit}, doc) => {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
@@ -198,6 +215,14 @@ const actions = {
           commit('AUTH_ERROR', err)
           reject(err)
         })
+        
+      localStorage.removeItem('user-token') // clear your user's token from localstorage
+      localStorage.removeItem('user-id')
+      localStorage.removeItem('user-photo')
+      localStorage.removeItem('user-email')
+      localStorage.removeItem('user-firstname')
+      localStorage.removeItem('user-lastname')
+      localStorage.removeItem('user-usertype')
     })
     // getters.getToken().then((token) => {
     //   console.log(token)

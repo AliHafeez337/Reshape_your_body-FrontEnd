@@ -127,7 +127,15 @@ export default {
             password
             })
             .then(() => {
-            this.$router.push('/pages/login')
+              this.$vs.notify({
+                title: 'Success',
+                text: 'Password updated successfully',
+                color: 'success',
+                iconPack: 'feather',
+                position: 'top-center',
+                icon:'icon-check'
+              })
+              this.$router.push('/pages/login')
             })
             .catch(e => {
                 this.colorAlert = 'danger'

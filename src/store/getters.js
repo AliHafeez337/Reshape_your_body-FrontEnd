@@ -34,6 +34,7 @@ const getters = {
   authStatus: state => state.status,
   getToken: (state) => {
     // return state.token
+    console.log(localStorage.getItem('user-token'))
     return new Promise(async (resolve, reject) => {
       const token = await localStorage.getItem('user-token')
       // console.log(token)
