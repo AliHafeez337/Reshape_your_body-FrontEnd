@@ -44,11 +44,11 @@ const router = new Router({
       // =============================================================================
       path: '',
       component: () => import('./layouts/main/Main.vue'),
-      beforeEnter (to, from, next) 
-      {
+      beforeEnter (to, from, next) {
         if (state.token) {
           next()
-        } else {
+        }
+        else {
           next('/pages/login')
         }
       },
@@ -76,18 +76,18 @@ const router = new Router({
                     }
                 */
 
-        {
+          {
           path: '/pages/profile',
           name: 'pages-profile',
           component: () => import('@/views/pages/profile.vue'),
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-        {
+          beforeEnter (to, from, next) {
             if (state.token) {
               next()
-            } else {
+            }
+            else {
               next('/pages/login')
             }
           }
@@ -161,50 +161,8 @@ const router = new Router({
         // =============================================================================
         // UI ELEMENTS
         // =============================================================================
-        {
-          path: '/ui-elements/data-list/list-view',
-          name: 'data-list-list-view',
-          component: () => import('@/views/ui-elements/data-list/list-view/DataListListView.vue'),
-          meta: {
-            breadcrumb: [
-              {
-                title: 'Home',
-                url: '/'
-              },
-              {
-                title: 'Data List'
-              },
-              {
-                title: 'List View',
-                active: true
-              }
-            ],
-            pageTitle: 'List View',
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/ui-elements/data-list/thumb-view',
-          name: 'data-list-thumb-view',
-          component: () => import('@/views/ui-elements/data-list/thumb-view/DataListThumbView.vue'),
-          meta: {
-            breadcrumb: [
-              {
-                title: 'Home',
-                url: '/'
-              },
-              {
-                title: 'Data List'
-              },
-              {
-                title: 'Thumb View',
-                active: true
-              }
-            ],
-            pageTitle: 'Thumb View',
-            rule: 'editor'
-          }
-        },
+        
+        
         {
           path: '/ui-elements/grid/vuesax',
           name: 'grid-vuesax',
@@ -552,7 +510,7 @@ const router = new Router({
         },
         {
           path: '/pages/addfaq',
-          name: 'page-faq-add',
+          name: 'page-faq',
           component: () => import('@/views/pages/AddFaq.vue'),
           meta: {
             breadcrumb: [
@@ -571,30 +529,8 @@ const router = new Router({
             pageTitle: 'Add FAQ',
             rule: 'editor'
           }
-        },
-        {
-          path: '/pages/editfaq/:id',
-          name: 'page-faq-edit',
-          props: true,
-          component: () => import('@/views/pages/EditFaq.vue'),
-          meta: {
-            breadcrumb: [
-              {
-                title: 'Home',
-                url: '/'
-              },
-              {
-                title: 'Pages'
-              },
-              {
-                title: 'Edit FAQ',
-                active: true
-              }
-            ],
-            pageTitle: 'Edit FAQ',
-            rule: 'editor'
-          }
         }
+
         // =============================================================================
         // CHARTS & MAPS
         // =============================================================================
@@ -630,11 +566,11 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-          {
+          beforeEnter (to, from, next) {
             if (state.token) {
               next('/')
-            } else {
+            }
+            else {
               next()
             }
           }
@@ -646,11 +582,11 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-          {
+          beforeEnter (to, from, next) {
             if (state.token) {
               next('/')
-            } else {
+            }
+            else {
               next()
             }
           }
@@ -662,11 +598,11 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) 
-          {
+          beforeEnter (to, from, next) {
             if (state.token) {
               next('/')
-            } else {
+            }
+            else {
               next()
             }
           }
