@@ -44,11 +44,10 @@ const router = new Router({
       // =============================================================================
       path: '',
       component: () => import('./layouts/main/Main.vue'),
-      beforeEnter (to, from, next) {
+      beforeEnter(to, from, next) {
         if (state.token) {
           next()
-        }
-        else {
+        } else {
           next('/pages/login')
         }
       },
@@ -76,18 +75,17 @@ const router = new Router({
                     }
                 */
 
-          {
+        {
           path: '/pages/profile',
           name: 'pages-profile',
           component: () => import('@/views/pages/profile.vue'),
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next()
-            }
-            else {
+            } else {
               next('/pages/login')
             }
           }
@@ -158,8 +156,26 @@ const router = new Router({
         // =============================================================================
         // UI ELEMENTS
         // =============================================================================
-        
-        
+        {
+          path: '/key/list-view',
+          name: 'data-list-list-view',
+          component: () => import('@/views/ui-elements/data-list/list-view/Key.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Keys',
+                active: true
+              }
+            ],
+            pageTitle: 'List View',
+            rule: 'editor'
+          }
+        },
+
+
         {
           path: '/ui-elements/grid/vuesax',
           name: 'grid-vuesax',
@@ -547,11 +563,10 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next('/')
-            }
-            else {
+            } else {
               next()
             }
           }
@@ -563,11 +578,10 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next('/')
-            }
-            else {
+            } else {
               next()
             }
           }
@@ -579,11 +593,10 @@ const router = new Router({
           meta: {
             rule: 'editor'
           },
-          beforeEnter (to, from, next) {
+          beforeEnter(to, from, next) {
             if (state.token) {
               next('/')
-            }
-            else {
+            } else {
               next()
             }
           }

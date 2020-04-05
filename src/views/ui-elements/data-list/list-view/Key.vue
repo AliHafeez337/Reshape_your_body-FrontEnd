@@ -9,34 +9,11 @@
 
 <template>
   <div id="data-list-list-view" class="data-list-container">
-
-    <data-view-sidebar :isSidebarActive="addNewDataSidebar" @closeSidebar="toggleDataSidebar" :data="sidebarData" />
-
-    <vs-table ref="table" multiple v-model="selected" pagination :max-items="itemsPerPage" search :data="products">
+    <vs-table ref="table" v-model="selected" pagination :max-items="itemsPerPage" search :data="Keys">
 
       <div slot="header" class="flex flex-wrap-reverse items-center flex-grow justify-between">
 
         <div class="flex flex-wrap-reverse items-center data-list-btn-container">
-
-          <!-- ACTION - DROPDOWN -->
-          <vs-dropdown vs-trigger-click class="dd-actions cursor-pointer mr-4 mb-4">
-
-            <div class="p-4 shadow-drop rounded-lg d-theme-dark-bg cursor-pointer flex items-center justify-center text-lg font-medium w-32 w-full">
-              <span class="mr-2">Actions</span>
-              <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
-            </div>
-
-            <vs-dropdown-menu>
-
-              <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Delete</span>
-                </span>
-              </vs-dropdown-item>
-
-            </vs-dropdown-menu>
-          </vs-dropdown>
 
           <!-- ADD NEW -->
           <div class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" @click="addNewData">
@@ -48,7 +25,7 @@
         <!-- ITEMS PER PAGE -->
         <vs-dropdown vs-trigger-click class="cursor-pointer mb-4 mr-4 items-per-page-handler">
           <div class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium">
-            <span class="mr-2">{{ currentPage * itemsPerPage - (itemsPerPage - 1) }} - {{ products.length - currentPage * itemsPerPage > 0 ? currentPage * itemsPerPage : products.length }} of {{ queriedItems }}</span>
+            <span class="mr-2">{{ currentPage * itemsPerPage - (itemsPerPage - 1) }} - {{ Keys.length - currentPage * itemsPerPage > 0 ? currentPage * itemsPerPage : Keys.length }} of {{ queriedItems }}</span>
             <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
           </div>
           <!-- <vs-button class="btn-drop" type="line" color="primary" icon-pack="feather" icon="icon-chevron-down"></vs-button> -->
@@ -71,11 +48,10 @@
       </div>
 
       <template slot="thead">
-        <vs-th sort-key="name">Name</vs-th>
-        <vs-th sort-key="category">Category</vs-th>
-        <vs-th sort-key="popularity">Popularity</vs-th>
-        <vs-th sort-key="order_status">Order Status</vs-th>
-        <vs-th sort-key="price">Price</vs-th>
+        <vs-th sort-key="key">Product Key</vs-th>
+        <vs-th sort-key="creadtedAt">Created At</vs-th>
+        <vs-th sort-key="used">Used</vs-th>
+        <vs-th sort-key="owner">Owner</vs-th>
         <vs-th>Action</vs-th>
       </template>
 
@@ -84,27 +60,27 @@
             <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
 
               <vs-td>
-                <p class="product-name font-medium truncate">{{ tr.name }}</p>
+                <p class="product-name font-medium truncate">{{ tr.key }}</p>
+                <vs-chip color="primary"
+                  v-clipboard:copy="tr.key"
+                  v-clipboard:success="onCopy"
+                  v-clipboard:error="onError">Click to Copy Key to Clipboard!</vs-chip>
               </vs-td>
 
               <vs-td>
-                <p class="product-category">{{ tr.category | title }}</p>
+                <p class="product-category">{{ tr.creadtedAt }}</p>
               </vs-td>
-
               <vs-td>
-                <vs-progress :percent="Number(tr.popularity)" :color="getPopularityColor(Number(tr.popularity))" class="shadow-md" />
+                <vs-chip :color="getOrderStatusColor(tr.used)" class="product-order-status">{{ tr.used}}</vs-chip>
               </vs-td>
-
               <vs-td>
-                <vs-chip :color="getOrderStatusColor(tr.order_status)" class="product-order-status">{{ tr.order_status | title }}</vs-chip>
-              </vs-td>
-
-              <vs-td>
-                <p class="product-price">${{ tr.price }}</p>
+                <p class="product-category">{{ tr.owner }}</p>
               </vs-td>
 
               <vs-td class="whitespace-no-wrap">
-                <feather-icon icon="TrashIcon" svgClasses="w-5 h-5 hover:text-danger stroke-current" class="ml-2" @click.stop="deleteData(tr.id)" />
+                <vx-tooltip :style="{display:inline,float:'right'}" color="danger" text="Delete this key">
+                <feather-icon icon="TrashIcon" svgClasses="w-5 h-5 hover:text-danger stroke-current" class="ml-2" @click.stop="deleteData(tr._id)" />
+                </vx-tooltip>
               </vs-td>
 
             </vs-tr>
@@ -117,6 +93,8 @@
 <script>
 import DataViewSidebar from '../DataViewSidebar.vue'
 import moduleDataList from '@/store/data-list/moduleDataList.js'
+import axios from 'axios'
+import VueClipboard from 'vue-clipboard2'
 
 export default {
   components: {
@@ -124,14 +102,11 @@ export default {
   },
   data () {
     return {
+      inline:'inline',
       selected: [],
-      // products: [],
+      keys: [],
       itemsPerPage: 4,
       isMounted: false,
-
-      // Data Sidebar
-      addNewDataSidebar: false,
-      sidebarData: {}
     }
   },
   computed: {
@@ -141,49 +116,83 @@ export default {
       }
       return 0
     },
-    products () {
-      return this.$store.state.dataList.products
+    Keys () {
+      return this.keys
     },
     queriedItems () {
-      return this.$refs.table ? this.$refs.table.queriedResults.length : this.products.length
+      return this.$refs.table ? this.$refs.table.queriedResults.length : this.Keys.length
     }
   },
   methods: {
     addNewData () {
-      this.sidebarData = {}
-      this.toggleDataSidebar(true)
+      return new Promise((resolve, reject) => {
+        axios.post('/key/generateKey').then(resp => {
+        this.keys.unshift(resp.data)
+        this.$vs.dialog({
+          color: 'success',
+          title: 'Key    ( '+resp.data.key+' )    added successfully',
+          accept: this.acceptAlert
+        })
+        resolve(resp)
+        }).catch(err => {
+            console.log(err);
+            reject(err)
+        })
+      });
+    },
+    onCopy: function (e) {
+      this.$vs.dialog({
+        color: 'warning',
+        title: 'You just copied:    ( '+e.text+' )',
+        accept: this.acceptAlert
+      })
+    },
+    onError: function (e) {
+      this.$vs.dialog({
+        color: 'danger',
+        title: 'An error occured',
+        accept: this.acceptAlert
+      })
     },
     deleteData (id) {
-      this.$store.dispatch('dataList/removeItem', id).catch(err => { console.error(err) })
+      return new Promise((resolve, reject) => {
+          axios.delete('/key/deleteKey',{
+            params: {
+              keyId:id
+            }
+          }).then(resp => {
+          for(let index=0; index<this.keys.length; index++){
+            if(this.keys[index]._id==id){
+              this.keys.splice(index,1);
+            }
+          }
+          resolve(resp)
+          }).catch(err => {
+              console.log(err);
+              reject(err)
+          })
+      });
+      
     },
     editData (data) {
-      // this.sidebarData = JSON.parse(JSON.stringify(this.blankData))
-      this.sidebarData = data
-      this.toggleDataSidebar(true)
+
     },
     getOrderStatusColor (status) {
-      if (status === 'on_hold')   return 'warning'
-      if (status === 'delivered') return 'success'
-      if (status === 'canceled')  return 'danger'
-      return 'primary'
+      if (status) return 'success'
+      if (!status)  return 'danger'
     },
-    getPopularityColor (num) {
-      if (num > 90)  return 'success'
-      if (num > 70)  return 'primary'
-      if (num >= 50) return 'warning'
-      if (num < 50)  return 'danger'
-      return 'primary'
-    },
-    toggleDataSidebar (val = false) {
-      this.addNewDataSidebar = val
-    }
+
   },
   created () {
-    if (!moduleDataList.isRegistered) {
-      this.$store.registerModule('dataList', moduleDataList)
-      moduleDataList.isRegistered = true
-    }
-    this.$store.dispatch('dataList/fetchDataListItems')
+    return new Promise((resolve, reject) => {
+        axios.get('/key/getKeys').then(resp => {
+        this.keys=resp.data;
+        resolve(resp)
+        }).catch(err => {
+            console.log(err);
+            reject(err)
+        })
+    });
   },
   mounted () {
     this.isMounted = true
