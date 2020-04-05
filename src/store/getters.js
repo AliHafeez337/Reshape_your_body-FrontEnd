@@ -39,6 +39,13 @@ const getters = {
       // console.log(token)
       resolve(token)
     })
+  },
+  getId: (state) => {
+    return new Promise(async (resolve, reject) => {
+      const id = await localStorage.getItem('user-id')
+      // console.log(id)
+      resolve(id)
+    })
   }
 }
 
