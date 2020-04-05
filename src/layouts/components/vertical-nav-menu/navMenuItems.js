@@ -39,69 +39,49 @@ export default [
     header: 'Apps',
     icon: 'PackageIcon',
     i18n: 'Apps',
-    items: [
-      {
-        url: null,
-        name: 'User',
-        icon: 'UserIcon',
-        i18n: 'User',
-        submenu: [
-          {
-            url: '/apps/user/user-list',
-            name: 'List',
-            slug: 'app-user-list',
-            i18n: 'List'
-          },
-          {
-            url: '/apps/user/user-view/268',
-            name: 'View',
-            slug: 'app-user-view',
-            i18n: 'View'
-          },
-          {
-            url: '/apps/user/user-edit/268',
-            name: 'Edit',
-            slug: 'app-user-edit',
-            i18n: 'Edit'
-          }
-        ]
-      }
-    ]
+    items: [{
+      url: null,
+      name: 'User',
+      icon: 'UserIcon',
+      i18n: 'User',
+      submenu: [{
+          url: '/apps/user/user-list',
+          name: 'List',
+          slug: 'app-user-list',
+          i18n: 'List'
+        },
+        {
+          url: '/apps/user/user-view/268',
+          name: 'View',
+          slug: 'app-user-view',
+          i18n: 'View'
+        },
+        {
+          url: '/apps/user/user-edit/268',
+          name: 'Edit',
+          slug: 'app-user-edit',
+          i18n: 'Edit'
+        }
+      ]
+    }]
   },
   {
     header: 'UI',
     icon: 'LayersIcon',
     i18n: 'UI',
-    items: [
-      {
-        url: null,
-        name: 'Data List',
-        tag: 'new',
-        tagColor: 'primary',
-        icon: 'ListIcon',
-        i18n: 'DataList',
-        submenu: [
-          {
-            url: '/ui-elements/data-list/list-view',
-            name: 'List View',
-            slug: 'data-list-list-view',
-            i18n: 'ListView'
-          },
-          {
-            url: '/ui-elements/data-list/thumb-view',
-            name: 'Thumb View',
-            slug: 'data-list-thumb-view',
-            i18n: 'ThumbView'
-          }
-        ]
+    items: [{
+        url: '/key/list-view',
+        name: 'Keys',
+        icon: 'LayoutIcon',
+        slug: 'data-list-list-view',
+        i18n: 'Keys'
       },
       {
         url: null,
         name: 'Grid',
         icon: 'LayoutIcon',
         i18n: 'Grid',
-        submenu: [
-          {
+        submenu: [{
             url: '/ui-elements/grid/vuesax',
             name: 'Vuesax',
             slug: 'grid-vuesax',
@@ -121,8 +101,7 @@ export default [
     header: 'Pages',
     icon: 'FileIcon',
     i18n: 'Pages',
-    items: [
-      {
+    items: [{
         url: '/pages/user-settings',
         slug: 'page-user-settings',
         name: 'User Settings',
@@ -141,8 +120,7 @@ export default [
         name: 'Authentication',
         icon: 'PieChartIcon',
         i18n: 'Authentication',
-        submenu: [
-          {
+        submenu: [{
             url: '/pages/login',
             name: 'Login',
             slug: 'pages-login',
@@ -177,8 +155,7 @@ export default [
         name: 'Miscellaneous',
         icon: 'CoffeeIcon',
         i18n: 'Miscellaneous',
-        submenu: [
-          {
+        submenu: [{
             url: '/pages/not-authorized',
             name: 'Not Authorized',
             slug: 'page-not-authorized',
@@ -224,14 +201,12 @@ export default [
     header: 'Others',
     icon: 'MoreHorizontalIcon',
     i18n: 'Others',
-    items: [
-      {
+    items: [{
         url: null,
         name: 'Menu Levels',
         icon: 'MenuIcon',
         i18n: 'MenuLevels',
-        submenu: [
-          {
+        submenu: [{
             url: null,
             name: 'Menu Level 2.1',
             i18n: 'MenuLevel2p1'
@@ -240,8 +215,7 @@ export default [
             url: null,
             name: 'Menu Level 2.2',
             i18n: 'MenuLevel2p2',
-            submenu: [
-              {
+            submenu: [{
                 url: null,
                 name: 'Menu Level 3.1',
                 i18n: 'MenuLevel3p1'
@@ -267,8 +241,7 @@ export default [
         name: 'Support',
         icon: 'SmileIcon',
         i18n: 'Support',
-        submenu: [
-          {
+        submenu: [{
             url: 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/documentation/',
             name: 'Documentation',
             icon: 'BookOpenIcon',
@@ -289,4 +262,3 @@ export default [
     ]
   }
 ]
-
