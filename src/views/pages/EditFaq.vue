@@ -2,9 +2,6 @@
     <vs-row vs-justify="center">
     <vs-row vs-justify="center">
     <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="6">
-    <vs-alert :active="activeA" :color="colorAlert" :icon="'sms'">
-    <h3>{{alertMessage}}</h3>
-    </vs-alert>
     </vs-col>
     </vs-row><br><br>
 
@@ -88,12 +85,20 @@
                     axios.put('/faq/updateFaq', this.faq).then(resp => {
                     this.colorAlert='success';
                     this.alertMessage='FAQ Editted succesfully';
-                    this.activeA=true;
+                    this.$vs.dialog({
+                        color: this.colorAlert,
+                        title: this.alertMessage,
+                        accept: this.acceptAlert
+                    })
                     resolve(resp)
                     }).catch(err => {
                         this.colorAlert='danger';
                         this.alertMessage='An Error occured';
-                        this.activeA=true;
+                        this.$vs.dialog({
+                        color: this.colorAlert,
+                        title: this.alertMessage,
+                        accept: this.acceptAlert
+                    })
                         reject(err)
                     })
                 });
