@@ -508,7 +508,7 @@ const router = new Router({
         },
         {
           path: '/pages/addfaq',
-          name: 'page-faq',
+          name: 'page-faq-add',
           component: () => import('@/views/pages/AddFaq.vue'),
           meta: {
             breadcrumb: [{
@@ -526,8 +526,29 @@ const router = new Router({
             pageTitle: 'Add FAQ',
             rule: 'editor'
           }
+        },
+        {
+          path: '/pages/editfaq/:id',
+          name: 'page-faq-edit',
+          props: true,
+          component: () => import('@/views/pages/EditFaq.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'Pages'
+              },
+              {
+                title: 'Edit FAQ',
+                active: true
+              }
+            ],
+            pageTitle: 'Edit FAQ',
+            rule: 'editor'
+          }
         }
-
         // =============================================================================
         // CHARTS & MAPS
         // =============================================================================
