@@ -7,7 +7,7 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
+import state from './state';
 const mutations = {
 
 
@@ -116,6 +116,10 @@ const mutations = {
   },
   
   // Ali's work
+  photoURL: (url) => {
+    localStorage.setItem('user-photo', url)
+    state.photo = url
+  },
   sendingRequest: (state) => {
     state.registerRequest = 'loading'
   },

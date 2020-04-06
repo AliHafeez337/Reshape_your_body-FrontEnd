@@ -1,6 +1,12 @@
 <template>
   <vs-tabs :position="isSmallerScreen ? 'top' : 'left'" class="tabs-shadow-none" id="profile-tabs" :key="isSmallerScreen">
 
+    <!-- IMAGE -->
+    <vs-tab icon-pack="feather" icon="icon-image" :label="!isSmallerScreen ? 'Image' : ''">
+      <div class="tab-general md:ml-4 md:mt-0 mt-4 ml-0">
+        <user-settings-image/>
+      </div>
+    </vs-tab>
     <!-- GENERAL -->
     <vs-tab icon-pack="feather" icon="icon-user" :label="!isSmallerScreen ? 'General' : ''">
       <div class="tab-general md:ml-4 md:mt-0 mt-4 ml-0">
@@ -36,6 +42,7 @@ import UserSettingsChangePassword from './UserSettingsChangePassword.vue'
 import UserSettingsChangeEmail from './UserSettingsChangeEmail.vue'
 import UserSettingsDelete from './UserSettingsDelete.vue'
 import UserSettingsInfo from './UserSettingsInfo.vue'
+import UserSettingsImage from './UserSettingsImage.vue'
 
 export default {
   components: {
@@ -43,7 +50,8 @@ export default {
     UserSettingsChangePassword,
     UserSettingsChangeEmail,
     UserSettingsDelete,
-    UserSettingsInfo
+    UserSettingsInfo,
+    UserSettingsImage
   },
   data () {
     return {

@@ -61,6 +61,7 @@ const actions = {
   },
   
   // Ali's work
+
   deleteAccount: ({commit}, doc) => {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
