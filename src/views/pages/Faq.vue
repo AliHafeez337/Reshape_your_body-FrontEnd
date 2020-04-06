@@ -207,6 +207,7 @@
       return new Promise((resolve, reject) => {
         axios.get('/faq/getFaqs').then(resp => {
         this.faqs=resp.data;
+        console.log(this.faqs)
         for(let index=0; index<this.faqs.length; index++){
           if(this.faqs[index].category=='General'){
             this.faqs[index].categoryId=2;

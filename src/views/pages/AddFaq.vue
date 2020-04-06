@@ -82,12 +82,20 @@
             submit(){
                 return new Promise((resolve, reject) => {
                     axios.post('/faq/addQuestion', this.faq).then(resp => {
-                    this.colorAlert='success';
+                    // this.colorAlert='success';
                     this.alertMessage='FAQ added succesfully';
-                    this.$vs.dialog({
-                        color: this.colorAlert,
-                        title: this.alertMessage,
-                        accept: this.acceptAlert
+                    // this.$vs.dialog({
+                    //     color: this.colorAlert,
+                    //     title: this.alertMessage,
+                    //     accept: this.acceptAlert
+                    // })
+                    this.$vs.notify({
+                        title: 'Success',
+                        text: this.alertMessage,
+                        color: 'success',
+                        iconPack: 'feather',
+                        position: 'top-center',
+                        icon:'icon-check'
                     })
                     resolve(resp)
                     }).catch(err => {

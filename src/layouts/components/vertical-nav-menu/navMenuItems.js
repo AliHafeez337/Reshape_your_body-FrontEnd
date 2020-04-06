@@ -73,6 +73,9 @@ export default [
         url: '/key/list-view',
         name: 'Keys',
         icon: 'LayoutIcon',
+        // iconPack: 'feather',
+        // position: 'top-center',
+        // icon:'icon-email',
         slug: 'data-list-list-view',
         i18n: 'Keys'
       },
