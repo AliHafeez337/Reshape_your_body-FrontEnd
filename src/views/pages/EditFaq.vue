@@ -85,10 +85,18 @@
                     axios.put('/faq/updateFaq', this.faq).then(resp => {
                     this.colorAlert='success';
                     this.alertMessage='FAQ Editted succesfully';
-                    this.$vs.dialog({
+                    // this.$vs.dialog({
+                    //     color: this.colorAlert,
+                    //     title: this.alertMessage,
+                    //     accept: this.acceptAlert
+                    // })
+                    this.$vs.notify({
+                        title: 'Success',
+                        text: this.alertMessage,
                         color: this.colorAlert,
-                        title: this.alertMessage,
-                        accept: this.acceptAlert
+                        iconPack: 'feather',
+                        position: 'top-center',
+                        icon:'icon-check'
                     })
                     resolve(resp)
                     }).catch(err => {

@@ -6,6 +6,7 @@
     <br />
     <span class="text-danger text-sm">{{ errors.first('oldpassword') }}</span>
     <vs-input 
+      type="password"
       data-vv-validate-on="blur"
       v-validate="'required|min:6'"
       name="oldpassword"
@@ -18,6 +19,7 @@
       v-model="old_password" />
     <span class="text-danger text-sm">{{ errors.first('password') }}</span>
     <vs-input 
+      type="password"
       data-vv-validate-on="blur"
       v-validate="'required|min:6'"
       name="password"
@@ -31,6 +33,7 @@
     <span class="text-danger text-sm">{{ errors.first('confirm_password') }}</span>
     <span class="text-danger text-sm" v-show="!isPasswordValid">The passwords must match.</span>
     <vs-input
+      type="password"
       v-validate="'min:6'"
       data-vv-validate-on="blur"
       data-vv-as="password"

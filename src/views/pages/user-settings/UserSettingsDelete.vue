@@ -9,6 +9,7 @@
     <br />
     <span class="text-danger text-sm">{{ errors.first('password') }}</span>
     <vs-input 
+      type="password"
       data-vv-validate-on="blur"
       v-validate="'required|min:6'"
       name="password"

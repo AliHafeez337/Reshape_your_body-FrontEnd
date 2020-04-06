@@ -4,10 +4,10 @@
     <!-- GENERAL -->
     <vs-tab icon-pack="feather" icon="icon-user" :label="!isSmallerScreen ? 'General' : ''">
       <div class="tab-general md:ml-4 md:mt-0 mt-4 ml-0">
-        <user-settings-general />
+        <user-settings-general :user="user"/>
       </div>
     </vs-tab>
-    <vs-tab icon-pack="feather" icon="icon-info" :label="!isSmallerScreen ? 'Info' : ''">
+    <vs-tab icon-pack="feather" icon="icon-info" :label="!isSmallerScreen ? 'Address Info' : ''">
       <div class="tab-info md:ml-4 md:mt-0 mt-4 ml-0">
         <user-settings-info />
       </div>
@@ -47,8 +47,25 @@ export default {
   },
   data () {
     return {
-
+      user: null
     }
+  },
+  created() {
+    // return new Promise((resolve, reject) => {
+    //   this.$store.dispatch('me')
+    //   .then(res => {
+    //     this.user = res.data
+    //     console.log(this.user)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     if (err.response.status === 404) {
+    //       this.user_not_found = true
+    //       return
+    //     }
+    //     console.error(err) 
+    //   })
+    // });
   },
   computed: {
     isSmallerScreen () {
