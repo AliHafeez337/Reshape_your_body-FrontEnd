@@ -47,6 +47,12 @@ const getters = {
       // console.log(id)
       resolve(id)
     })
+  },
+  getPhoto: (state) => {
+    return new Promise(async (resolve, reject) => {
+      const photo = await localStorage.getItem('user-photo')
+      resolve(photo)
+    })
   }
 }
 

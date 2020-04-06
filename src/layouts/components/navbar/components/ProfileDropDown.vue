@@ -58,6 +58,9 @@ export default {
           usertype: this.$store.state.tempUserObj.usertype,
           email: this.$store.state.tempUserObj.email
         }
+        if (obj.photoURL === null || obj.photoURL === undefined){
+          obj.photoURL = require('@/assets/images/user/user.png')
+        }
         console.log(obj)
         return obj
       }
@@ -70,6 +73,9 @@ export default {
           photoURL: this.$store.state.AppActiveUser.photoURL === "undefined" ? require('@/assets/images/user/user.png') : this.$store.state.AppActiveUser.photoURL,
           usertype: this.$store.state.AppActiveUser.usertype,
           email: this.$store.state.AppActiveUser.email
+        }
+        if (obj.photoURL === null || obj.photoURL === undefined){
+          obj.photoURL = require('@/assets/images/user/user.png')
         }
         console.log(obj)
         return obj
@@ -92,7 +98,7 @@ export default {
         setTimeout(() => {
           console.log("now the catch runs")
           this.$router.replace('/pages/login')
-        }, 2000)
+        }, 1)
       })
       this.$vs.notify({
         title: 'Success',

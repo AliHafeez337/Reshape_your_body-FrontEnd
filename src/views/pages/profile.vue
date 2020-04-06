@@ -38,7 +38,12 @@
                 </table>
               </div>
               <div class="vx-col flex-1" id="account-info-col-1">
-                <vs-button icon-pack="feather" icon="icon-edit" class="mr-4 editBtn" :to="{name: 'app-user-edit', params: { userId: $route.params.userId }}">Edit</vs-button>
+                <vs-button 
+                  icon-pack="feather" 
+                  icon="icon-edit" 
+                  class="mr-4 editBtn" 
+                  :to="{name: 'page-user-settings'}"
+                  >Edit</vs-button>
               </div>
             </div>
             <div class="vx-row">

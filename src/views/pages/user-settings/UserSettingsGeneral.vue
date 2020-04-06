@@ -1,16 +1,6 @@
 <template>
   <vx-card no-shadow>
 
-    <!-- Img Row -->
-    <div class="flex flex-wrap items-center mb-base">
-      <vs-avatar :src="activeUserInfo.photoURL" size="70px" class="mr-4 mb-4" />
-      <div>
-        <vs-button class="mr-4 sm:mb-0 mb-2">Upload photo</vs-button>
-        <vs-button type="border" color="danger">Remove</vs-button>
-        <p class="text-sm mt-2">Allowed JPG, GIF or PNG. Max size of 800kB</p>
-      </div>
-    </div>
-
     <vs-input 
       class="w-full mb-base" 
       label-placeholder="Name" 
@@ -64,6 +54,7 @@ import flatPickr from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 import vSelect from 'vue-select'
 import phone from 'phone'
+import axios from 'axios';
 
 export default {
   components: {
@@ -92,9 +83,6 @@ export default {
   computed: {
     isDisabled () {
       return this.dob !== null && this.langs.length > 0 && this.phone !== '' && !this.isPhoneValid
-    },
-    activeUserInfo () {
-      return this.$store.state.AppActiveUser
     },
     isPhoneValid () {
       if (phone(this.phone).length > 0) {
