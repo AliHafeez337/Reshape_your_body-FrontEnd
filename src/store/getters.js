@@ -28,7 +28,7 @@ const getters = {
   scrollbarTag: state => {
     return state.is_touch_device ? 'div' : 'VuePerfectScrollbar'
   },
-  
+
   // Ali's work
   isAuthenticated: state => !!state.token,
   authStatus: state => state.status,
@@ -53,6 +53,9 @@ const getters = {
       const photo = await localStorage.getItem('user-photo')
       resolve(photo)
     })
+  },
+  getUserDisplayListG: (state) => {
+    return state.displayListUser
   }
 }
 

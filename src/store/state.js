@@ -8,7 +8,9 @@
 ==========================================================================================*/
 
 import navbarSearchAndPinList from '@/layouts/components/navbar/navbarSearchAndPinList'
-import themeConfig, { colors } from '@/../themeConfig.js'
+import themeConfig, {
+  colors
+} from '@/../themeConfig.js'
 
 // /////////////////////////////////////////////
 // Helper
@@ -26,14 +28,14 @@ import themeConfig, { colors } from '@/../themeConfig.js'
 
 // Ali's work
 const userDefaults = {
-  id          : localStorage.getItem('user-id'),
-  firstname   : localStorage.getItem('user-firstname'),
-  lastname    : localStorage.getItem('user-lastname'),
-  about       : '',
-  photoURL    : localStorage.getItem('user-photo'),
-  status      : '',
-  usertype    : localStorage.getItem('user-usertype'),
-  email       : localStorage.getItem('user-email')
+  id: localStorage.getItem('user-id'),
+  firstname: localStorage.getItem('user-firstname'),
+  lastname: localStorage.getItem('user-lastname'),
+  about: '',
+  photoURL: localStorage.getItem('user-photo'),
+  status: '',
+  usertype: localStorage.getItem('user-usertype'),
+  email: localStorage.getItem('user-email')
 }
 
 const userInfoLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {}
@@ -46,7 +48,7 @@ const getUserInfo = () => {
   // Update property in user
   Object.keys(userDefaults).forEach((key) => {
     // If property is defined in localStorage => Use that
-    userInfo[key] = userInfoLocalStorage[key] ?  userInfoLocalStorage[key] : userDefaults[key]
+    userInfo[key] = userInfoLocalStorage[key] ? userInfoLocalStorage[key] : userDefaults[key]
   })
 
   // Include properties from localStorage
@@ -83,20 +85,20 @@ const is_touch_device = () => {
 // /////////////////////////////////////////////
 
 const state = {
-  AppActiveUser           : getUserInfo(),
-  bodyOverlay             : false,
-  isVerticalNavMenuActive : true,
-  is_touch_device         : is_touch_device(),
-  mainLayoutType          : themeConfig.mainLayoutType || 'vertical',
+  AppActiveUser: getUserInfo(),
+  bodyOverlay: false,
+  isVerticalNavMenuActive: true,
+  is_touch_device: is_touch_device(),
+  mainLayoutType: themeConfig.mainLayoutType || 'vertical',
   navbarSearchAndPinList,
-  reduceButton            : themeConfig.sidebarCollapsed,
-  verticalNavMenuWidth    : 'default',
-  verticalNavMenuItemsMin : false,
-  scrollY                 : 0,
-  starredPages            : navbarSearchAndPinList['pages'].data.filter((page) => page.is_bookmarked),
-  theme                   : themeConfig.theme || 'light',
-  themePrimaryColor       : colors.primary,
-  
+  reduceButton: themeConfig.sidebarCollapsed,
+  verticalNavMenuWidth: 'default',
+  verticalNavMenuItemsMin: false,
+  scrollY: 0,
+  starredPages: navbarSearchAndPinList['pages'].data.filter((page) => page.is_bookmarked),
+  theme: themeConfig.theme || 'light',
+  themePrimaryColor: colors.primary,
+
   // Ali's work
   token: localStorage.getItem('user-token') || '',
   id: localStorage.getItem('user-id') || '',
@@ -112,7 +114,8 @@ const state = {
 
   // Can be used to get current window with
   // Note: Above breakpoint state is for internal use of sidebar & navbar component
-  windowWidth: null
+  windowWidth: null,
+  displayListUser: []
 }
 
 export default state
