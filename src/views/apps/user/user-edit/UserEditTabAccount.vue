@@ -11,20 +11,13 @@
   <div id="user-edit-tab-info">
 
     <!-- Avatar Row -->
-    <div class="vx-row">
+    <div class="vx-row" style="padding-bottom:30px">
       <div class="vx-col w-full">
         <div class="flex items-start flex-col sm:flex-row">
-          <img :src="data.avatar" class="mr-8 rounded h-24 w-24" />
+          <img :src="data.photo" class="mr-8 rounded h-24 w-24" />
           <!-- <vs-avatar :src="data.avatar" size="80px" class="mr-4" /> -->
           <div>
-            <p class="text-lg font-medium mb-2 mt-4 sm:mt-0">{{ data.name  }}</p>
-            <input type="file" class="hidden" ref="update_avatar_input" @change="update_avatar" accept="image/*">
-
-            <!-- Toggle comment of below buttons as one for actual flow & currently shown is only for demo -->
-            <vs-button class="mr-4 mb-4">Change Avatar</vs-button>
-            <!-- <vs-button type="border" class="mr-4" @click="$refs.update_avatar_input.click()">Change Avatar</vs-button> -->
-
-            <vs-button type="border" color="danger">Remove Avatar</vs-button>
+            <p class="text-lg font-medium mb-2 mt-4 sm:mt-0">{{ data.firstname +' '+data.lastname  }}</p>
           </div>
         </div>
       </div>
@@ -33,70 +26,63 @@
     <!-- Content Row -->
     <div class="vx-row">
       <div class="vx-col md:w-1/2 w-full">
-        <vs-input class="w-full mt-4" label="Username" v-model="data_local.username" v-validate="'required|alpha_num'" name="username" />
-        <span class="text-danger text-sm"  v-show="errors.has('username')">{{ errors.first('username') }}</span>
 
-        <vs-input class="w-full mt-4" label="Name" v-model="data_local.name" v-validate="'required|alpha_spaces'" name="name" />
-        <span class="text-danger text-sm"  v-show="errors.has('name')">{{ errors.first('name') }}</span>
+        <vs-input class="w-full mt-4" label="First Name" v-model="data_local.firstname" v-validate="'required|alpha_spaces'" name="firstname" />
+        <span class="text-danger text-sm"  v-show="errors.has('firstname')">{{ errors.first('firstname') }}</span>
+       
+        <vs-input class="w-full mt-4" label="Last Name" v-model="data_local.lastname" v-validate="'required|alpha_spaces'" name="lastname" />
+        <span class="text-danger text-sm"  v-show="errors.has('lastname')">{{ errors.first('lastname') }}</span>
 
-        <vs-input class="w-full mt-4" label="Email" v-model="data_local.email" type="email" v-validate="'required|email'" name="email" />
-        <span class="text-danger text-sm"  v-show="errors.has('email')">{{ errors.first('email') }}</span>
+
+
+        <vs-input class="w-full mt-4" label="Address 1" v-model="data_local.address1"  name="address1" />
+        <span class="text-danger text-sm"  v-show="errors.has('address1')">{{ errors.first('address1') }}</span>
+                <!-- langs -->
+        <div class="mt-8">
+          <label class="text-sm">Languages</label>
+          <v-select v-model="data_local.languages" multiple :closeOnSelect="false" :options="langOptions" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+        </div>
+
+        <vs-input class="w-full mt-4" label="Address 2" v-model="data_local.address2"  name="address2" />
+        <span class="text-danger text-sm"  v-show="errors.has('address2')">{{ errors.first('address2') }}</span>
       </div>
 
       <div class="vx-col md:w-1/2 w-full">
-
-        <div class="mt-4">
-          <label class="vs-input--label">Status</label>
-          <v-select v-model="status_local" :clearable="false" :options="statusOptions" v-validate="'required'" name="status" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-          <span class="text-danger text-sm"  v-show="errors.has('status')">{{ errors.first('status') }}</span>
-        </div>
-
         <div class="mt-4">
           <label class="vs-input--label">Role</label>
-          <v-select v-model="role_local" :clearable="false" :options="roleOptions" v-validate="'required'" name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+          <v-select v-model="data_local.usertype" :clearable="false" :options="roleOptions" v-validate="'required'" name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
           <span class="text-danger text-sm"  v-show="errors.has('role')">{{ errors.first('role') }}</span>
         </div>
+        
+        <vs-input class="w-full mt-4" label="City" v-model="data_local.city" name="city" />
+        <span class="text-danger text-sm"  v-show="errors.has('city')">{{ errors.first('city') }}</span>
 
-        <vs-input class="w-full mt-4" label="Company" v-model="data_local.company" v-validate="'alpha_spaces'" name="company" />
-        <span class="text-danger text-sm"  v-show="errors.has('company')">{{ errors.first('company') }}</span>
+        <vs-input class="w-full mt-4" label="Postal" v-model="data_local.postal"  name="postal" />
+        <span class="text-danger text-sm"  v-show="errors.has('postal')">{{ errors.first('postal') }}</span>
+
+        <vs-input class="w-full mt-4" label="Country" v-model="data_local.country" name="country" />
+        <span class="text-danger text-sm"  v-show="errors.has('country')">{{ errors.first('country') }}</span>
+
+                <!-- dob -->
+        <div class="mt-8">
+          <label class="text-sm">Birth Date</label>
+          <flat-pickr v-model="data_local.birthdate" :config="{ dateFormat: 'd F Y' }" class="w-full" />
+        </div>
+        <!-- phone Number -->
+        <span class="text-danger text-sm">{{ errors.first('phone') }}</span><br />
+        <span class="text-danger text-sm" v-show="isPhoneValid">The phone number must be valid.</span>
+        <vs-input
+        v-validate="'required'"
+        data-vv-validate-on="blur"
+        name="phone"
+        type="phone"
+        label-placeholder="Phone"
+        placeholder="Phone (Starting with the country code)"
+        v-model="data_local.phone"
+        class="w-full mt-6" />
 
       </div>
     </div>
-
-    <!-- Permissions -->
-    <vx-card class="mt-base" no-shadow card-border>
-
-      <div class="vx-row">
-        <div class="vx-col w-full">
-          <div class="flex items-end px-3">
-            <feather-icon svgClasses="w-6 h-6" icon="LockIcon" class="mr-2" />
-            <span class="font-medium text-lg leading-none">Permissions</span>
-          </div>
-          <vs-divider />
-        </div>
-      </div>
-
-      <div class="block overflow-x-auto">
-        <table class="w-full">
-          <tr>
-            <!--
-              You can also use `Object.keys(Object.values(data_local.permissions)[0])` this logic if you consider,
-              our data structure. You just have to loop over above variable to get table headers.
-              Below we made it simple. So, everyone can understand.
-             -->
-            <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Module', 'Read', 'Write', 'Create', 'Delete']" :key="heading">{{ heading }}</th>
-          </tr>
-
-          <tr v-for="(val, name) in data_local.permissions" :key="name">
-            <td class="px-3 py-2">{{ name }}</td>
-            <td v-for="(permission, name) in val" class="px-3 py-2" :key="name+permission">
-              <vs-checkbox v-model="val[name]" />
-            </td>
-          </tr>
-        </table>
-      </div>
-
-    </vx-card>
 
     <!-- Save & Reset Button -->
     <div class="vx-row">
@@ -112,10 +98,15 @@
 
 <script>
 import vSelect from 'vue-select'
+import flatPickr from 'vue-flatpickr-component'
+import 'flatpickr/dist/flatpickr.css'
+import axios from 'axios';
+import phone from 'phone'
 
 export default {
   components: {
-    vSelect
+    vSelect,
+    flatPickr
   },
   props: {
     data: {
@@ -127,38 +118,46 @@ export default {
     return {
 
       data_local: JSON.parse(JSON.stringify(this.data)),
-
-      statusOptions: [
-        { label: 'Active',  value: 'active' },
-        { label: 'Blocked',  value: 'blocked' },
-        { label: 'Deactivated',  value: 'deactivated' }
-      ],
       roleOptions: [
         { label: 'Admin',  value: 'admin' },
         { label: 'User',  value: 'user' },
-        { label: 'Staff',  value: 'staff' }
-      ]
-    }
+        { label: 'Customer',  value: 'customer' },
+        { label: 'Partner',  value: 'partner' },
+        ],
+
+      langOptions: [
+        { label: 'English',  value: 'english'  },
+        { label: 'French',   value: 'french'   },
+        { label: 'German',   value: 'german'   },
+        { label: 'Portugues',   value: 'portugues'   },
+      ]}
   },
   computed: {
-    status_local: {
-      get () {
-        return { label: this.capitalize(this.data_local.status),  value: this.data_local.status  }
-      },
-      set (obj) {
-        this.data_local.status = obj.value
-      }
-    },
     role_local: {
       get () {
-        return { label: this.capitalize(this.data_local.role),  value: this.data_local.role  }
+        return { label: this.capitalize(this.data_local.usertype),  value: this.data_local.usertype  }
       },
       set (obj) {
-        this.data_local.role = obj.value
+        this.data_local.usertype = obj.usertype
       }
     },
     validateForm () {
       return !this.errors.any()
+    },
+    isDisabled () {
+      return this.dob !== null && this.langs.length > 0 && this.phone !== '' && !this.isPhoneValid
+    },
+    isPhoneValid () {
+      if (phone(this.phone).length > 0) {
+        this.validphone = phone(this.phone)[0]
+        return false
+      }
+      else if (this.phone === '') {
+        return false
+      }
+      else {
+        return true
+      }
     }
   },
   methods: {
@@ -168,11 +167,37 @@ export default {
     save_changes () {
       /* eslint-disable */
       if (!this.validateForm) return
-
-      // Here will go your API call for updating data
-      // You can get data in "this.data_local"
-
-      /* eslint-enable */
+      for (let i in this.data_local.languages){
+        this.data_local.languages[i]=this.data_local.languages[i].value
+      }
+      this.data_local.usertype=this.data_local.usertype.value
+      this.data_local.id=this.data_local._id;
+      this.data_local.photo=null
+      console.log(this.data_local)
+      return new Promise((resolve, reject) => {
+        axios.patch('/user/edit', this.data_local).then(resp => {
+        this.colorAlert='success';
+        this.alertMessage='User Editted succesfully';
+        this.$vs.notify({
+            title: 'Success',
+            text: this.alertMessage,
+            color: this.colorAlert,
+            iconPack: 'feather',
+            position: 'top-center',
+            icon:'icon-check'
+        })
+        resolve(resp)
+        }).catch(err => {
+            this.colorAlert='danger';
+            this.alertMessage='An Error occured';
+            this.$vs.dialog({
+            color: this.colorAlert,
+            title: this.alertMessage,
+            accept: this.acceptAlert
+        })
+            reject(err)
+        })
+    });
     },
     reset_data () {
       this.data_local = JSON.parse(JSON.stringify(this.data))

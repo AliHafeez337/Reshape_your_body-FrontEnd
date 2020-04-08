@@ -92,7 +92,7 @@
 
 <script>
 import DataViewSidebar from '../DataViewSidebar.vue'
-import moduleDataList from '@/store/data-list/moduleDataList.js'
+
 import axios from 'axios'
 import VueClipboard from 'vue-clipboard2'
 

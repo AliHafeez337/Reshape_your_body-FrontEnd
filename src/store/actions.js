@@ -15,20 +15,28 @@ const actions = {
   // /////////////////////////////////////////////
 
   // Vertical NavMenu
-  updateVerticalNavMenuWidth ({ commit }, width) {
+  updateVerticalNavMenuWidth({
+    commit
+  }, width) {
     commit('UPDATE_VERTICAL_NAV_MENU_WIDTH', width)
   },
 
   // VxAutoSuggest
-  updateStarredPage ({ commit }, payload) {
+  updateStarredPage({
+    commit
+  }, payload) {
     commit('UPDATE_STARRED_PAGE', payload)
   },
 
   // The Navbar
-  arrangeStarredPagesLimited ({ commit }, list) {
+  arrangeStarredPagesLimited({
+    commit
+  }, list) {
     commit('ARRANGE_STARRED_PAGES_LIMITED', list)
   },
-  arrangeStarredPagesMore ({ commit }, list) {
+  arrangeStarredPagesMore({
+    commit
+  }, list) {
     commit('ARRANGE_STARRED_PAGES_MORE', list)
   },
 
@@ -36,10 +44,14 @@ const actions = {
   // UI
   // /////////////////////////////////////////////
 
-  toggleContentOverlay ({ commit }) {
+  toggleContentOverlay({
+    commit
+  }) {
     commit('TOGGLE_CONTENT_OVERLAY')
   },
-  updateTheme ({ commit }, val) {
+  updateTheme({
+    commit
+  }, val) {
     commit('UPDATE_THEME', val)
   },
 
@@ -47,28 +59,37 @@ const actions = {
   // User/Account
   // /////////////////////////////////////////////
 
-  updateUserInfo ({ commit }, payload) {
+  updateUserInfo({
+    commit
+  }, payload) {
     commit('UPDATE_USER_INFO', payload)
   },
-  updateUserRole ({ dispatch }, payload) {
+  updateUserRole({
+    dispatch
+  }, payload) {
     // Change client side
     payload.aclChangeRole(payload.userRole)
 
     // Make API call to server for changing role
 
     // Change userInfo in localStorage and store
-    dispatch('updateUserInfo', {userRole: payload.userRole})
+    dispatch('updateUserInfo', {
+      userRole: payload.userRole
+    })
   },
-  
+
   // Ali's work
 
-  deleteAccount: ({commit}, doc) => {
+  deleteAccount: ({
+    commit
+  }, doc) => {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
       axios.delete('/user/delete', {
-      data: {
-        password: doc.password
-      }}).then(res => {
+        data: {
+          password: doc.password
+        }
+      }).then(res => {
         console.log(res)
         commit('REQUEST_COMPLETE')
         resolve(res)
@@ -78,8 +99,10 @@ const actions = {
         reject(err)
       })
     })
-  }, 
-  editMail: ({commit}, doc) => {
+  },
+  editMail: ({
+    commit
+  }, doc) => {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
       axios.patch('/user/editEmail', doc).then(res => {
@@ -92,8 +115,10 @@ const actions = {
         reject(err)
       })
     })
-  }, 
-  edit: ({commit}, doc) => {
+  },
+  edit: ({
+    commit
+  }, doc) => {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
       axios.patch('/user/edit', doc).then(res => {
@@ -107,7 +132,9 @@ const actions = {
       })
     })
   },
-  me: ({commit}) => {
+  me: ({
+    commit
+  }) => {
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
       axios.get('/user/me').then(res => {
@@ -119,7 +146,9 @@ const actions = {
       })
     })
   },
-  confirm: ({commit}, doc) => {
+  confirm: ({
+    commit
+  }, doc) => {
     console.log(doc)
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
@@ -132,7 +161,9 @@ const actions = {
       })
     })
   },
-  forget: ({commit}, doc) => {
+  forget: ({
+    commit
+  }, doc) => {
     console.log(doc)
     return new Promise((resolve, reject) => {
       commit('AUTH_REQUEST')
@@ -145,7 +176,9 @@ const actions = {
       })
     })
   },
-  register: ({commit}, doc) => {
+  register: ({
+    commit
+  }, doc) => {
     console.log(doc)
     return new Promise((resolve, reject) => {
       commit('sendingRequest')
@@ -162,16 +195,18 @@ const actions = {
         })
     })
   },
-  
+
   // login: ({commit, dispatch}, user) => {
-  login: ({commit}, user) => {
+  login: ({
+    commit
+  }, user) => {
     console.log(user)
     return new Promise((resolve, reject) => { // The Promise used for router redirect in login
       commit('AUTH_REQUEST')
       axios.post('/user/login', {
-        email: user.email,
-        password: user.password
-      })
+          email: user.email,
+          password: user.password
+        })
         .then(resp => {
           commit('SET_USER', resp.data)
           const token = resp.data.token
@@ -196,8 +231,10 @@ const actions = {
   },
 
   // logout: ({commit, dispatch, state}) => {
-  logout: ({commit}) => {
-    
+  logout: ({
+    commit
+  }) => {
+
     return new Promise((resolve, reject) => {
       axios.post('/user/logout')
         .then(res => {
@@ -216,7 +253,7 @@ const actions = {
           commit('AUTH_ERROR', err)
           reject(err)
         })
-        
+
       localStorage.removeItem('user-token') // clear your user's token from localstorage
       localStorage.removeItem('user-id')
       localStorage.removeItem('user-photo')
@@ -228,7 +265,7 @@ const actions = {
     // getters.getToken().then((token) => {
     //   console.log(token)
     //   axios.defaults.headers.common['x-auth'] = token
-      
+
     //   return new Promise((resolve, reject) => {
     //     axios.post('/user/logout')
     //       .then(res => {
@@ -249,6 +286,16 @@ const actions = {
     //       })
     //   })
     // })
+  },
+  addUserInList({
+    commit
+  }, ListUser) {
+    commit('additionOfUserInList', ListUser);
+  },
+  delUserInList({
+    commit
+  }, ind) {
+    commit('deletionOfUserInList', ind);
   }
 }
 
