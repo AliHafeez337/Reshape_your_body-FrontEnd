@@ -153,7 +153,9 @@
             <div
               class="vx-card p-2"
               v-if="
-                activeUserInfo.usertype === downloads.userAllowed ||
+                 activeUserInfo.usertype === downloadd.userAllowed[0] ||
+                    activeUserInfo.usertype === downloadd.userAllowed[1] ||
+                    activeUserInfo.usertype === downloadd.userAllowed[2] ||
                   activeUserInfo.usertype === 'admin'
               "
             >
@@ -259,7 +261,9 @@
             <div
               class="vx-card p-2"
               v-if="
-                activeUserInfo.usertype === downloads.userAllowed ||
+                  activeUserInfo.usertype === downloads.userAllowed[0] ||
+                    activeUserInfo.usertype === downloads.userAllowed[1] ||
+                    activeUserInfo.usertype === downloads.userAllowed[2] ||
                   activeUserInfo.usertype === 'admin'
               "
             >
