@@ -22,6 +22,7 @@ axios.interceptors.request.use(config => {
   return config
 })
 axios.interceptors.response.use(res => {
+  console.log("STATUS")
   console.log(res.status)
   console.log('Response Interceptor', res)
   if (res.config.url === '/user/login') {

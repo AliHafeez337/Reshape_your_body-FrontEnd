@@ -8,8 +8,7 @@
 ==========================================================================================*/
 
 import axios from '@/axios.js'
-
-export default {
+const actions = {
   // addItem({ commit }, item) {
   //   return new Promise((resolve, reject) => {
   //     axios.post("/api/data-list/products/", {item: item})
@@ -60,3 +59,4 @@ export default {
     })
   }
 }
+export default {actions}

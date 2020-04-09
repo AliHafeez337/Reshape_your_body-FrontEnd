@@ -37,6 +37,14 @@
         style="word-wrap:break-word;">
         <strong>Uploading</strong>
         {{ loadingText }}
+        {{ progress }}
+      </p>
+      <p
+        v-if="err"
+        class="text-center w-75"
+        style="word-wrap:break-word;">
+        <strong>Errmsg: </strong>
+        {{ err }}
       </p>
       
       <!-- Avatar Col -->
@@ -67,6 +75,8 @@ export default {
         uploadButtonTitle: uploadButtonTitle,
         file: '',
         loadingText: '',
+        progress: '',
+        err: '',
         loading: false,
         selectedFile: '',
         photo: '',
@@ -92,6 +102,7 @@ export default {
 			if (fileName) {
 				this.loadingText = fileName
 				this.loading = true
+				this.err = ''
 			}
 		},
 		insertImage () {
@@ -102,30 +113,35 @@ export default {
       // console.log(formData)
       this.$store.getters.getId.then(id => { 
         axios.patch(`/image/add`, formData
-        , {params: {
-            id
+          , {params: {
+              id
+            },
+            onUploadProgress: (uploadEvent) => {
+              this.progress = 'Upload progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%'
           }}
-        ).then(response => {
-            setTimeout(() => {
-            console.log(response.data.errmsg)
-              if (response.data.errmsg === null || response.data.errmsg === undefined){
-                // this.$store.mutations.photoURL(response.photo)
-                localStorage.setItem('user-photo', response.data.photo)
-                this.photo = response.data.photo
-                this.loading = false
-                this.$refs.uploadInput.value = undefined
-                // this.$refs.uploadInput = undefined
-              }
-              else{
-                this.loading = false
-                this.photo = this.$store.state.photo
-                this.$refs.uploadInput.value = undefined
-                this.errors.push(e)
-              }
-            }, 900)
-          })
-          .catch(e => {
-          })
+          ).then(response => {
+              setTimeout(() => {
+              console.log(response.data.errmsg)
+                if (response.data.errmsg === null || response.data.errmsg === undefined){
+                  // this.$store.mutations.photoURL(response.photo)
+                  localStorage.setItem('user-photo', response.data.photo)
+                  this.$store.state.photoURL = response.data.photo
+                  this.photo = response.data.photo
+                  this.loading = false
+                  this.$refs.uploadInput.value = undefined
+                  // this.$refs.uploadInput = undefined
+                }
+                else{
+				          this.err = response.data.errmsg
+                  this.loading = false
+                  this.photo = this.$store.state.photo
+                  this.$refs.uploadInput.value = undefined
+                  this.errors.push(e)
+                }
+              }, 900)
+            })
+            .catch(e => {
+            })
       })
 		},
 		deleteImage () {

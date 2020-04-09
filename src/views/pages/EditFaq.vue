@@ -5,7 +5,7 @@
     </vs-col>
     </vs-row><br><br>
 
-    <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="6">
+    <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="10">
         <vs-card>
         <div slot="header">
             <h3>
@@ -23,6 +23,7 @@
                 class="w-full"/>
             <br />
             <vs-textarea
+                rows="7" 
                 name="answer"
                 height="200px" 
                 icon-no-border

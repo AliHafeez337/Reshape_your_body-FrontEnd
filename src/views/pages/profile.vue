@@ -302,10 +302,11 @@ export default {
         this.user_dataTemp.city = res.data.city, 
         this.user_dataTemp.postal = res.data.postal
         this.user_data = this.user_dataTemp
-        if (this.user_data.avatar === undefined){
+        // if (this.user_data.avatar === undefined){
+        console.log(this.user_data)
+        if (this.user_data.avatar === undefined || this.user_data.avatar === null){
           this.user_data.avatar = require('@/assets/images/user/user.png')
         }
-        console.log(this.user_data)
       })
       .catch(err => {
         console.log(err)

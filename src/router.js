@@ -105,10 +105,37 @@ const router = new Router({
               {
                 title: 'List',
                 active: true
+              },
+              {
+                title: 'Register'
               }
             ],
             pageTitle: 'User List',
             rule: 'editor'
+          }
+        },
+        {
+          path: '/apps/user/user-register',
+          name: 'app-user-register',
+          component: () => import('@/views/apps/user/user-register/register.vue'),
+          meta: {
+            breadcrumb: [{
+                title: 'Home',
+                url: '/'
+              },
+              {
+                title: 'User'
+              },
+              {
+                title: 'List'
+              },
+              {
+                title: 'Register',
+                active: true
+              }
+            ],
+            pageTitle: 'User Register',
+            rule: 'editor',
           }
         },
         {

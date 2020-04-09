@@ -6,6 +6,9 @@
   Author: Pixinvent
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+import getters from './moduleUserManagementGetters'
+import mutations from './moduleUserManagementActions'
+import actions from './moduleUserManagementActions'
 
 export default {
   users: [],
