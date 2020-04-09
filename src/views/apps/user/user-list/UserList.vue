@@ -41,16 +41,18 @@
           </vs-dropdown>
         </div>
                   <!-- ADD NEW -->
-        <div class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary">
+        <!-- <router-link to="/pages/user-settings"> -->
+        <div @click="$router.push('/apps/user/user-register').catch(() => {})" 
+          class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary">
             <feather-icon icon="PlusIcon" svgClasses="h-4 w-4" />
             <span class="ml-2 text-base text-primary">Register New User</span>
         </div>
+      <!-- </router-link> -->
         </div>
         <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
           <vs-input class="sm:mr-4 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery" @input="updateSearchQuery" placeholder="Search..." />
           <!-- <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()">Export as CSV</vs-button> -->
       </div>
-
 
       <!-- AgGrid Table -->
       <ag-grid-vue

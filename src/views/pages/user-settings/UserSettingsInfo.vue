@@ -70,7 +70,6 @@ export default {
       address2: '',
       country1: '',
       country: '',
-      country: '',
       city: '',
       postal: '',
       countryOptions: jsonData,

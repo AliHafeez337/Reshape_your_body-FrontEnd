@@ -6,9 +6,7 @@
   Author: Pixinvent
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-
-
-export default {
+const mutations = {
   SET_USERS (state, users) {
     state.users = users
   },
@@ -17,3 +15,5 @@ export default {
     state.users.splice(userIndex, 1)
   }
 }
+
+export default {mutations}

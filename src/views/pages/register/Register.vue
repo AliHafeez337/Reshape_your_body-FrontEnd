@@ -27,7 +27,7 @@
                               </div>
                               <div class="clearfix">
                                 <vs-input
-                                  v-validate="'required|alpha_dash|min:3'"
+                                  v-validate="'required|alpha_spaces'"
                                   data-vv-validate-on="blur"
                                   label-placeholder="First Name"
                                   name="firstname"
@@ -37,7 +37,7 @@
                                 <span class="text-danger text-sm">{{ errors.first('firstname') }}</span>
 
                                 <vs-input
-                                  v-validate="'required|alpha_dash|min:3'"
+                                  v-validate="'required|alpha_spaces'"
                                   data-vv-validate-on="blur"
                                   label-placeholder="Last Name"
                                   name="lastname"
