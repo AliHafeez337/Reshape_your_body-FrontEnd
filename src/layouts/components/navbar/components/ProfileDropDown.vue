@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import 'firebase/auth'
-import undefined from 'firebase/auth'
 
 export default {
   data () {
