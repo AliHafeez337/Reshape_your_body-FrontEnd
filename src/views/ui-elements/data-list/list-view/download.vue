@@ -153,7 +153,9 @@
             <div
               class="vx-card p-2"
               v-if="
-                activeUserInfo.usertype === downloads.userAllowed ||
+                 activeUserInfo.usertype === downloadd.userAllowed[0] ||
+                    activeUserInfo.usertype === downloadd.userAllowed[1] ||
+                    activeUserInfo.usertype === downloadd.userAllowed[2] ||
                   activeUserInfo.usertype === 'admin'
               "
             >
@@ -259,7 +261,9 @@
             <div
               class="vx-card p-2"
               v-if="
-                activeUserInfo.usertype === downloads.userAllowed ||
+                  activeUserInfo.usertype === downloads.userAllowed[0] ||
+                    activeUserInfo.usertype === downloads.userAllowed[1] ||
+                    activeUserInfo.usertype === downloads.userAllowed[2] ||
                   activeUserInfo.usertype === 'admin'
               "
             >
@@ -364,9 +368,9 @@
             <div
               class="vx-card p-2"
               v-if="
-                activeUserInfo.usertype === user ||
-                  activeUserInfo.usertype === customer ||
-                  activeUserInfo.usertype === partner ||
+                activeUserInfo.usertype === downloads.userAllowed[0] ||
+                    activeUserInfo.usertype === downloads.userAllowed[1] ||
+                    activeUserInfo.usertype === downloads.userAllowed[2] ||
                   activeUserInfo.usertype === 'admin'
               "
             >
@@ -583,8 +587,8 @@ export default {
           })
           .then(resp => {
             this.downloads = resp.data;
-            var keys = Object.keys(resp.data);
-            var rdd = resp.data;
+            // var keys = Object.keys(resp.data);
+            // var rdd = resp.data;
             resolve(resp);
           })
           .catch(err => {
@@ -607,10 +611,10 @@ export default {
           this.downloads = resp.data;
           var keys = Object.keys(resp.data);
           var rdd = resp.data;
-          for (var i = 0; i < keys.length; i++) {
-            var value = rdd[i];
-            var ua = value.userAllowed;
-          }
+          // for (var i = 0; i < keys.length; i++) {
+          //   var value = rdd[i];
+          //   var ua = value.userAllowed;
+          // }
         })
         .catch(err => {
           console.log(err);
